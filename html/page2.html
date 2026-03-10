@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Indie+Flower&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Premiers projets</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/page1.css">
+    <link rel="stylesheet" href="../css/page2.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <header class="page-header">
+        <h1>Premiers projets</h1>
+    </header>
+    <main class="page-content">
+        <button class="discover" id="discoverBtn" aria-expanded="false" aria-controls="reveal1">
+            Suite <span class="arrow">↓</span>
+        </button>
+        <div class="reveal" id="reveal1">
+            <p>
+                Il s'agissait bien de <em>Favaro</em> ! Il enchaîne ensuite entre 2018 et 2021 avec plusieurs projets :
+                <em>Yung D/C</em>, <em>20's</em>, <em>Affamé</em>, <em>Z</em>, <em>Chrysalis</em> (+DLC), et <em>Affamé - Saison 2</em>.
+                On retrouve des morceaux marquants comme <em>Quand j'fume</em> et <em>Disaster</em> qui permettent déjà de constater l'identité mélancolique et à la fois déterminée de l'artiste.
+            </p>
+        </div>
+        <div class="next-block" id="reveal2">
+            <p id="reveal2Text"></p>
+
+            <div class="board-wrapper">
+                <div class="board" id="board1">
+                    <div class="board-header">
+                        Reviens vers moi et donne-moi du temps, j'ai déjà pleuré du sang...("Fleurs")
+
+                        <div class="hint-audio">
+                            <button class="audio-btn" id="hintAudioBtn1" type="button">
+                                indice
+                            </button>
+                            <audio id="hintAudio1">
+                                <source src="../audios/indice1.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="board-grid">
+                        <button class="board-card" type="button">Mais les peines s’envolent au gré du vent</button>
+                        <button class="board-card" type="button">Mais les larmes s'envolent au gré du temps</button>
+                        <button class="board-card" type="button">Mais le mal s'efface avec le temps</button>
+                        <button class="board-card board1-good" type="button">Mais les larmes s'envolent au gré du vent</button>
+                    </div>
+                    <p class="board-error" id="boardError1"></p>
+                </div>
+            </div>
+            <div class="board-wrapper board-hidden" id="board2Wrap">
+                <div class="board" id="board2">
+                    <div class="board-header">
+                        Passe une heure dans mes patins, ça équivaut à...("triste mais elle aime ça")
+                        <div class="hint-audio">
+                            <button class="audio-btn" id="hintAudioBtn2" type="button">
+                                indice
+                            </button>
+                            <audio id="hintAudio2">
+                                <source src="../audios/indice2.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="board-grid">
+                        <button class="board-card" type="button">3 vies dans leurs souliers</button>
+                        <button class="board-card board2-good" type="button">3 piges dans leurs souliers</button>
+                        <button class="board-card" type="button">Une heure dans mes patins</button>
+                        <button class="board-card" type="button">3 ans dans leurs sabats</button>
+                    </div>
+                    <p class="board-error" id="boardError2"></p>
+                </div>
+            </div>
+            <div class="board-wrapper board-hidden" id="board3Wrap">
+                <div class="board" id="board3">
+                    <div class="board-header">
+                        Grandi dans la merde, on m'a toujours traité comme un insecte moi. Cette vie n'est qu'un test et..("Le monde par ma fenêtre")
+                        <div class="hint-audio">
+                            <button class="audio-btn" id="hintAudioBtn3" type="button">
+                                indice
+                            </button>
+                            <audio id="hintAudio3">
+                                <source src="../audios/indice3.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="board-grid">
+                        <button class="board-card" type="button">j'attends les réponses</button>
+                        <button class="board-card" type="button">j'ai toutes les réponses</button>
+                        <button class="board-card board3-good" type="button">je n'ai aucune réponse</button>
+                        <button class="board-card" type="button">je cherche les réponses</button>
+                    </div>
+                    <p class="board-error" id="boardError3"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../js/page2.js" defer></script>
+</body>
+</html>

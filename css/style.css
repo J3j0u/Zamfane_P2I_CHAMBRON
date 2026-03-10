@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("../images/solsad.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    font-family: 'Sedgwick Ave Display', cursive;
+    color: white;
+    letter-spacing: 3px;
+    text-shadow: 4px 4px 15px rgba(0,0,0,1);
+
+    position: relative;
+}
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(2.5px);
+}
+.content {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+h1 {
+    font-size: 7rem;
+    letter-spacing: 15px;
+    text-transform: uppercase;
+    text-shadow: 4px 4px 15px rgba(0,0,0,1);
+}
+.btn {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 15px 40px;
+
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+
+    color: white;
+    border: 2px solid white;
+    background: transparent;
+
+    transition: all 0.3s ease;
+}
+.btn:hover {
+    background: white;
+    color: black;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Débuts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/page1.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <header class="page-header">
+        <h1>Les débuts</h1>
+    </header>
+    <main class="page-content">
+        <button class="discover" id="discoverBtn" aria-expanded="false" aria-controls="reveal1">
+            Présentation <span class="arrow">↓</span>
+        </button>
+        <div class="reveal" id="reveal1">
+            <p>
+                Zamdane, de son vrai nom Ayoub Zaidane est un jeune artiste né à Marrakech au Maroc.
+                Il arrive à 17 ans en France, à Marseille où il commence la musique inspiré par les têtes d'affiche du rap de l'époque mais aussi par les grands noms de la chanson française tel que Dalida ou Charles Aznavour.
+                Sur ce site, tu pourra découvrir (ou re-découvrir) son parcours musical, que tu sois un novice ou un fan aguéri.
+            </p>
+        </div>
+        <div class="next-block" id="reveal2">
+            <p id="reveal2Text"></p>
+            <br>
+            <div class="audio-wrap hidden" id="audioWrap">
+                <audio id="audioExtrait" preload="none">
+                    <source src="../audios/audio-mystere.mp3" type="audio/mpeg">
+                </audio>
+                <div class="audio-controls">
+                    <button class="audio-btn" id="audioBtn" type="button" aria-pressed="false">
+                        Écouter l'extrait
+                    </button>
+                    <div class="side-buttons">
+                        <button class="mini-btn" id="hintImgBtn" type="button" aria-expanded="false" aria-controls="hintImg">
+                            Indice
+                        </button>
+                        <button class="mini-btn" id="hintTextBtn" type="button" aria-expanded="false" aria-controls="hintText">
+                            Solution
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="answer-wrap hidden" id="answerWrap">
+                <div class="answer-core">
+                    <form class="answer-row" id="answerForm" novalidate>
+                        <label for="answerInput" class="sr-only"></label>
+                        <input id="answerInput" name="answer" type="text" placeholder="Ta réponse" autocomplete="off">
+                        <button class="answer-btn" id="answerBtn" type="submit">OK</button>
+                    </form>
+                    <p class="answer-error" id="answerError" role="alert" aria-live="polite"></p>
+                    <div class="hint-text" id="hintText">Solution : favaro</div>
+                    <img class="hint-img" id="hintImg" src="../images/indice.png" alt="Indice visuel">
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../js/page1.js"></script>
+</body>
+</html>

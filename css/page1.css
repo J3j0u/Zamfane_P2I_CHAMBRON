@@ -1,0 +1,296 @@
+body {
+    height: auto;
+    min-height: 220vh;
+    display: block;
+    font-size: 23px;
+    background-attachment: fixed;
+}
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+.page-header,
+.page-content {
+    position: relative;
+    z-index: 1;
+}
+.page-header {
+    margin-top: 13vh;
+    text-align: center;
+}
+.page-content {
+    margin-top: 30vh;
+    padding: 0 6vw;
+    text-align: center;
+}
+.reveal p,
+.next-block > p {
+    font-family: 'Indie Flower', cursive;
+    letter-spacing: normal;
+    text-transform: none;
+}
+.discover {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: white;
+    font: inherit;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.discover:hover {
+    animation: microshake 0.18s ease-in-out infinite;
+}
+.discover:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 6px;
+}
+.arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+.discover.open .arrow {
+    transform: rotate(180deg);
+}
+@keyframes microshake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-0.6px); }
+    50% { transform: translateX(0.6px); }
+    75% { transform: translateX(-0.4px); }
+    100% { transform: translateX(0); }
+}
+.reveal {
+    max-width: 650px;
+    margin: 25px auto 0;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.next-block {
+    max-width: 650px;
+    margin: 20vh auto 0;
+    opacity: 0;
+    transform: translateY(18px);
+    pointer-events: none;
+    will-change: opacity, transform;
+}
+#reveal2 p {
+    white-space: pre-line;
+}
+.audio-wrap {
+    max-width: 650px;
+    margin: 18px auto 0;
+}
+.audio-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+}
+.audio-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.audio-btn:hover {
+    background: white;
+    color: black;
+}
+.audio-btn:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 6px;
+}
+.side-buttons {
+    display: flex;
+    flex-direction: column;
+ gap: 10px;
+}
+.mini-btn {
+    width: 170px;
+    padding: 6px 8px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    font-family: 'Indie Flower', cursive;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.mini-btn:hover {
+    background: white;
+    color: black;
+}
+.mini-btn:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 6px;
+}
+.answer-wrap {
+    max-width: 650px;
+    margin: 22px auto 0;
+    text-align: center;
+}
+.answer-core {
+    position: relative;
+    width: 100%;
+}
+.answer-wrap label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+.answer-row {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+.answer-row input {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid white;
+    background: transparent;
+    outline: none;
+    color: white;
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.answer-row input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 1px;
+}
+.answer-row input:hover {
+    background: white;
+    color: black;
+}
+.answer-row input:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 6px;
+}
+.answer-btn {
+    padding: 0 18px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.answer-btn:hover {
+    background: white;
+    color: black;
+}
+.answer-btn:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 6px;
+}
+.answer-error {
+    min-height: 1.3em;
+    margin-top: 12px;
+    letter-spacing: 1px;
+    opacity: 0.95;
+}
+.hint-text {
+    position: absolute;
+    top: 44px;
+    left: calc(100% + 18px);
+    width: 260px;
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-align: left;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.hint-text.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.hint-img {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    width: min(420px, 92%);
+    border: 2px solid white;
+    opacity: 0;
+    transform: translate(-50%, 10px);
+    pointer-events: none;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.hint-img.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+}
+.hidden {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+}
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+    .discover:hover {
+        animation: none;
+    }
+    .arrow {
+        transition: none;
+    }
+    .reveal,
+    .next-block {
+        transition: none;
+    }
+}
+@media (max-width: 900px) {
+    .hint-text {
+        top: calc(100% + 80px);
+        left: 50%;
+        width: min(520px, 92%);
+        text-align: center;
+        transform: translate(-50%, 6px);
+    }
+    .hint-text.show {
+        transform: translate(-50%, 0);
+    }
+    .hint-img {
+        top: calc(100% + 140px);
+    }
+}
