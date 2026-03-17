@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (progress >= 0.75) {
       reveal2Started = true;
       setReveal2Progress(1);
-      typeLettersOnce(reveal2FullText, reveal2TextEl, 25);
+      typeLettersOnce(reveal2FullText, reveal2TextEl, 15);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     }

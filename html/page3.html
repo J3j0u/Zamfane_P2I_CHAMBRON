@@ -1,24 +1,86 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Indie+Flower&display=swap" rel="stylesheet">
-        <meta charset="UTF-8">
-        <title>Suite</title>
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/page1.css">
-    </head>
-    <body>
-        <div class="overlay"></div>
-            <header class="page-header">
-                <h1>La suite</h1>
-            </header>
-        <main class="page-content">
-            <div class="reveal show">
-                <p>
-                Bravo, tu as trouvé les bonnes réponses.  
-                </p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Discographie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/page1.css">
+    <link rel="stylesheet" href="../css/page3.css">
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <header class="page-header">
+        <h1>Discographie</h1>
+    </header>
+
+    <main class="page-content">
+        <button class="discover" id="discoverBtn" aria-expanded="false" aria-controls="reveal1">
+            Suite <span class="arrow">↓</span>
+        </button>
+
+        <div class="reveal" id="reveal1">
+            <p>
+                Bravo, tu as complété ces 3 phrases !
+                <br><br> 
+                En 2022, Zamdane dévoile son quatrième album, alors le plus long de sa discographie <em> Couleur de ma peine</em>.
+                <br>
+                La carrière de Zamdane prend un vrai tournant avec cet album. Avec une vraie communication autour des différents featurings. Mais aussi un évènement caritatif en collaboration avec "SOS méditéranée" qui deviendra un rendez-vous annuel immanquable pour les fans de Zamdane. Il s'agit en fait d'un concert solidaire visant à financer des opérations de sauvetages de migrants en Méditérranée.
+                <br><br>
+                Dans cet album, Zamdane sort parfois de son rôle habituel de "kicker" avec des morceaux plus mélancoliques et mélodieux, comme <em>Lettre à mon Dieu</em> ou <em>Vide quand t'es pas là</em> où il parle respectivement de son environnement et des problèmes qu'il peut affronter, et de sa petite soeur Aïcha.
+                <br><br>
+                Aussi, cet album s'accompagne d'une vraie réflexion artistique, notamment quant-à l'enchaînement des morceaux dans l'album, les différents clips et aussi avec une pochette d'album travaillée où l'on peut voir un tableau peint par la peintre Alia Alves Lahnaoui.
+                <br><br>
+                Pour le prochain jeu, vous devrez d'ailleurs associer les pochettes d'album aux bons titres. Pour cela, vous pouvez cliquer sur un album et le glisser vers un autre pour échanger leurs positions. 
+        </div>
+
+        <div class="albums-match" id="albumsMatch">
+            <div class="albums-column albums-covers" id="albumsCovers">
+                <div class="album-row">
+                    <img src="../images/cover1.jpg" alt="Pochette album 1" class="album-cover" data-cover="cover1" draggable="true">
+                </div>
+                <div class="album-row">
+                    <img src="../images/cover2.jpg" alt="Pochette album 2" class="album-cover" data-cover="cover2" draggable="true">
+                </div>
+                <div class="album-row">
+                    <img src="../images/cover3.jpg" alt="Pochette album 3" class="album-cover" data-cover="cover3" draggable="true">
+                </div>
+                <div class="album-row">
+                    <img src="../images/cover4.jpg" alt="Pochette album 4" class="album-cover" data-cover="cover4" draggable="true">
+                </div>
+                <div class="album-row">
+                    <img src="../images/cover5.jpg" alt="Pochette album 5" class="album-cover" data-cover="cover5" draggable="true">
+                </div>
             </div>
-        </main>
-    </body>
+
+            <div class="albums-actions">
+                <button class="validate-btn" id="validateAlbumsBtn" type="button">
+                    Valider
+                </button>
+            </div>
+
+            <div class="albums-column albums-titles">
+                <div class="album-row">
+                    <div class="album-title">Couleur de ma peine</div>
+                </div>
+                <div class="album-row">
+                    <div class="album-title">Rahma</div>
+                </div>
+                <div class="album-row">
+                    <div class="album-title">Chrysalis</div>
+                </div>
+                <div class="album-row">
+                    <div class="album-title">Solsad</div>
+                </div>
+                <div class="album-row">
+                    <div class="album-title">Affamé - saison 2</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/page3.js"></script>
+</body>
 </html>

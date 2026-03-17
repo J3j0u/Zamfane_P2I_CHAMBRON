@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const SUCCESS_PAGE = "page2.html";
 
   const reveal2FullText =
-    "Zamdane commence par des open mike, puis sort quelques morceaux sans grand succès au départ. " +
+    "Zamdane commence par des open mics, puis sort quelques morceaux sans grand succès au départ. " +
     "Cependant, en 2017, il dévoile un titre qui le fait découvrir à un public bien plus large.\n\n" +
     "Saurez-vous retrouver le titre de ce morceau à partir de cet extrait ?\n" +
     "Si vous avez du mal vous pouvez vous aider d'un indice !\n";
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
             answerWrap.classList.remove("hidden");
             answerWrap.classList.add("fade-in");
           }
-        }, 600);
+        }, 800);
         return;
       }
       spans[i].style.opacity = "1";
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (progress >= 0.75) {
       reveal2Started = true;
       setReveal2Progress(1);
-      typeLettersOnce(reveal2FullText, reveal2TextEl, 25);
+      typeLettersOnce(reveal2FullText, reveal2TextEl, 15);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     }

@@ -1,0 +1,169 @@
+.reveal p {
+    font-family: 'Indie Flower', cursive;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.albums-match {
+    width: 100%;
+    margin: 80px auto 0;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+}
+
+.albums-covers {
+    justify-self: end;
+    margin-right: 175px;
+}
+
+.albums-titles {
+    justify-self: start;
+    margin-left: 80px;
+}
+
+.albums-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.album-row {
+    height: 120px;
+    display: flex;
+    align-items: center;
+}
+
+.album-cover {
+    width: 120px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    display: block;
+    cursor: grab;
+    transition: transform 0.14s ease-out, box-shadow 0.14s ease-out, opacity 0.14s ease-out, border-color 0.2s ease;
+}
+
+.album-cover.dragging {
+    opacity: 0.45;
+}
+
+.album-cover.drag-over {
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 0.8),
+        0 0 28px rgba(255, 255, 255, 0.6);
+}
+
+.album-cover.swap-animate {
+    transform: scale(1.08);
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 0.85),
+        0 0 24px rgba(255, 255, 255, 0.55);
+}
+
+.album-cover.correct {
+    border-color: #4cff4c;
+    box-shadow:
+        0 0 14px rgba(76, 255, 76, 0.55),
+        inset 0 0 10px rgba(76, 255, 76, 0.18);
+}
+
+.album-cover.wrong {
+    border-color: #ff4c4c;
+    box-shadow:
+        0 0 14px rgba(255, 76, 76, 0.45),
+        inset 0 0 10px rgba(255, 76, 76, 0.14);
+}
+
+.album-title {
+    width: 270px;
+    height: 60px;
+    padding: 14px 22px;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.5rem;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.albums-actions {
+    justify-self: center;
+    align-self: start;
+    margin-top: 645px;
+}
+
+.validate-btn {
+    padding: 6px 8px;
+    width: 170px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    background: transparent;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Indie Flower', cursive;
+}
+
+.validate-btn:hover {
+    background: white;
+    color: black;
+}
+
+.validate-btn:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 6px;
+}
+
+@media (max-width: 900px) {
+    .albums-covers {
+        margin-right: 24px;
+    }
+
+    .albums-titles {
+        margin-left: 24px;
+    }
+
+    .album-title {
+        width: 220px;
+        font-size: 1.2rem;
+    }
+
+    .albums-actions {
+        margin-top: 245px;
+    }
+}
+
+@media (max-width: 700px) {
+    .albums-match {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+    }
+
+    .albums-covers,
+    .albums-titles {
+        margin: 0;
+        justify-self: auto;
+    }
+
+    .albums-actions {
+        margin-top: 0;
+        align-self: auto;
+        justify-self: auto;
+    }
+
+    .album-title {
+        width: min(320px, 90vw);
+    }
+}

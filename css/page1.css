@@ -2,7 +2,7 @@ body {
     height: auto;
     min-height: 220vh;
     display: block;
-    font-size: 23px;
+    font-size: 26px;
     background-attachment: fixed;
 }
 .overlay {
@@ -67,7 +67,7 @@ body {
     100% { transform: translateX(0); }
 }
 .reveal {
-    max-width: 650px;
+    max-width: 900px;
     margin: 25px auto 0;
     opacity: 0;
     transform: translateY(10px);
@@ -80,7 +80,7 @@ body {
     pointer-events: auto;
 }
 .next-block {
-    max-width: 650px;
+    max-width: 900px;
     margin: 20vh auto 0;
     opacity: 0;
     transform: translateY(18px);
