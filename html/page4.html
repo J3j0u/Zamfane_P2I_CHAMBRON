@@ -3,24 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Suite</title>
+    <title>Confirmation</title>
     <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Indie+Flower&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/page1.css">
+    <link rel="stylesheet" href="../css/page4.css">
 </head>
 <body>
     <div class="overlay"></div>
-
     <header class="page-header">
-        <h1>Suite</h1>
+        <h1>Confirmation</h1>
     </header>
-
     <main class="page-content">
-        <div class="reveal show">
+        <button class="discover" id="discoverBtn" aria-expanded="false" aria-controls="reveal1">
+            Nouvelle étape <span class="arrow">↓</span>
+        </button>
+        <div class="reveal" id="reveal1">
             <p>
-                Bravo, tu as retrouvé le bon ordre des albums.
+                Bien joué, tu as retrouvé les bonnes pochettes.
+                <br><br>
+                Après le succès de <em>Couleur de ma peine</em>, Zamdane reprend sa célèbre série <em>Affamé</em> e, 2023 avec la saison 3. 
+                <br>
+                Cette fois-ci, il publie les différents titres 1 par 1, accompagnés de clips, comme celui de <em>Conditionnés à décevoir (Affamé #15)</em> ou <em>Triste mais elle aime ça (Affamé #21)</em> qui deviendra son meilleur démarrage et un de ses titres les plus connus.
+                <br><br>
+                En 2024, il continue avec Solsad son quatrième album <em>Solsad</em>. À sa sortie, <em>Solsad</em>, se place à la troisième place tu Top Album avec 6776 ventes en première semaine. Zamdane possède désormais une vraie communauté qui attend chaque sortie.
+                <br>
+                L'album respecte l'engouement des fans, puisqu'on y trouve 20 titres, dont plusieurs collaborations variées, avec Niska, Tif, Pomme ou Sofiane Pamart par exemple.
+                <br>
+                Aussi, les enchaînements entre les morceaux est pensée de façon à ce que l'album puisse s'écouter sans coupure, avec des transitions travaillées et majoritairement jouées avec de vrais instruments.
+                <br><br>
+                Pour ce jeu, vous devrez trouver les titres publiés par Zamdane, parmi une liste de 20. Les autres titres appartiennent à d'autres artistes.
             </p>
         </div>
+        <div class="quiz-board" id="quizBoard">
+            <div class="quiz-top">
+                <span class="quiz-counter" id="quizCounter">
+                    Titres restants : 7
+                </span>
+            </div>
+            <div class="quiz-grid" id="quizGrid"></div>
+            <div class="next-page-wrap" id="nextPageWrap">
+                <button class="validate-btn" id="nextPageBtn" type="button">
+                    Passer à la page suivante
+                </button>
+            </div>
+        </div>
     </main>
+    <script src="../js/page4.js"></script>
 </body>
 </html>

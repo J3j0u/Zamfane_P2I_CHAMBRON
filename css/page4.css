@@ -1,0 +1,167 @@
+.reveal p {
+    font-family: 'Indie Flower', cursive;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.quiz-board {
+    width: 100%;
+    margin-top: 28px;
+}
+
+.quiz-top {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 12px;
+}
+
+.quiz-counter {
+    color: white;
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 1.2rem;
+    letter-spacing: normal;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.quiz-counter.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quiz-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.quiz-card {
+    min-height: 110px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.quiz-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quiz-card:hover {
+    transform: translateY(-4px) scale(1.03);
+    border-color: white;
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 0.8),
+        0 0 28px rgba(255, 255, 255, 0.6),
+        inset 0 0 10px rgba(255, 255, 255, 0.25);
+}
+
+.quiz-card:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 6px;
+}
+
+.quiz-card.correct {
+    border-color: #4cff4c;
+    box-shadow:
+        0 0 15px rgba(76, 255, 76, 0.6),
+        inset 0 0 10px rgba(76, 255, 76, 0.2);
+}
+
+.quiz-card.wrong {
+    border-color: #ff4c4c;
+    box-shadow:
+        0 0 15px rgba(255, 76, 76, 0.5),
+        inset 0 0 10px rgba(255, 76, 76, 0.16);
+}
+
+.quiz-card.shake {
+    animation: shake 0.35s;
+}
+
+.next-page-wrap {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(30px);
+    pointer-events: none;
+}
+
+.next-page-wrap.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.validate-btn {
+    width: 220px;
+    padding: 6px 12px;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    background: transparent;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Sedgwick Ave Display', cursive;
+}
+
+.validate-btn:hover {
+    background: white;
+    color: black;
+}
+
+.validate-btn:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 6px;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+
+@media (max-width: 900px) {
+    .quiz-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .quiz-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 450px) {
+    .quiz-grid {
+        grid-template-columns: 1fr;
+    }
+}

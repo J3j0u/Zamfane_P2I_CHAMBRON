@@ -103,7 +103,7 @@
 .validate-btn {
     padding: 6px 8px;
     width: 170px;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: white;
@@ -111,7 +111,7 @@
     border: 2px solid white;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Sedgwick Ave Display', cursive;
 }
 
 .validate-btn:hover {

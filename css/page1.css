@@ -105,8 +105,7 @@ body {
     border: 2px solid white;
     background: transparent;
     color: white;
-    font-family: 'Indie Flower', cursive;
-    font-size: 1.3rem;
+    font-family: 'Sedgwick Ave Display', cursive;    font-size: 1.3rem;
     letter-spacing: 2px;
     text-decoration: none;
     cursor: pointer;
@@ -132,7 +131,6 @@ body {
     background: transparent;
     color: white;
     font-family: 'Indie Flower', cursive;
-    font-size: 0.8rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     cursor: pointer;
@@ -179,7 +177,7 @@ body {
     background: transparent;
     outline: none;
     color: white;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Sedgwick Ave Display', cursive;    font-size: 0.8rem;
     font-size: 1.4rem;
     letter-spacing: 2px;
     text-align: center;
@@ -207,6 +205,7 @@ body {
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-family: 'Sedgwick Ave Display', cursive;    font-size: 1.3rem;
 }
 .answer-btn:hover {
     background: white;
