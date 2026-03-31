@@ -57,3 +57,11 @@ h1 {
     background: white;
     color: black;
 }
+.fullscreen-text {
+    margin: 28px 0 36px;
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    text-shadow: 3px 3px 12px rgba(0,0,0,1);
+}

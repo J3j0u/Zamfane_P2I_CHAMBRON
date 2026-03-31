@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
       i += 1;
     }, msPerChar);
   }
-  
+
   function onScroll() {
     if (reveal2Started || !reveal1 || !reveal2) return;
 
@@ -190,11 +190,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const good = normalize(BONNE_REPONSE);
 
       if (user === good) {
-        window.location.href = SUCCESS_PAGE;
+        const currentProgress = Number(localStorage.getItem("rahmaProgress") || "0");
+        localStorage.setItem("rahmaProgress", String(Math.max(currentProgress, 1)));
+        window.location.href = `page5.html?step=1&next=${encodeURIComponent(SUCCESS_PAGE)}`;
       } else {
         answerError.textContent = "Mauvaise réponse. Réessaie.";
       }
     });
+
     answerInput.addEventListener("input", () => {
       answerError.textContent = "";
     });

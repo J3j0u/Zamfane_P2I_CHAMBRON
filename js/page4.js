@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextPageWrap = document.getElementById("nextPageWrap");
   const nextPageBtn = document.getElementById("nextPageBtn");
   const quizCounter = document.getElementById("quizCounter");
-  
 
   const goodTitles = [
     "Déviant",
@@ -43,8 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
     "Petit frère"
   ];
 
+  const titleAudios = {
+    "Déviant": "../audios/1.mp3",
+    "Une balle qui touche le ciel": "../audios/2.mp3",
+    "Deadstar": "../audios/3.mp3",
+    "Million": "../audios/4.mp3",
+    "Infini": "../audios/5.mp3",
+    "C18": "../audios/6.mp3",
+    "Lettre à mon dieu": "../audios/7.mp3"
+  };
+
   let cardsShown = false;
   let correctCount = 0;
+  let currentAudio = null;
+  let currentTitle = null;
+  let errorAudio = new Audio("../audios/error.mp3");
 
   function updateCounter() {
     const remaining = goodTitles.length - correctCount;
@@ -60,6 +72,36 @@ document.addEventListener("DOMContentLoaded", () => {
       [copy[i], copy[j]] = [copy[j], copy[i]];
     }
     return copy;
+  }
+
+  function playTitleAudio(title) {
+    const src = titleAudios[title];
+    if (!src) return;
+
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    currentAudio = new Audio(src);
+    currentTitle = title;
+    currentAudio.play();
+  }
+
+  function toggleAudio() {
+    if (!currentAudio) return;
+
+    if (currentAudio.paused) {
+      currentAudio.play();
+    } else {
+      currentAudio.pause();
+    }
+  }
+
+  function goToRevealPage() {
+    const currentProgress = Number(localStorage.getItem("rahmaProgress") || "0");
+    localStorage.setItem("rahmaProgress", String(Math.max(currentProgress, 4)));
+    window.location.href = "page5.html?step=4";
   }
 
   function buildQuiz() {
@@ -97,6 +139,14 @@ document.addEventListener("DOMContentLoaded", () => {
       button.dataset.good = item.isGood ? "true" : "false";
 
       button.addEventListener("click", () => {
+        if (button.dataset.good === "true") {
+          if (currentAudio && currentTitle === item.title) {
+            toggleAudio();
+          } else {
+            playTitleAudio(item.title);
+          }
+        }
+
         if (button.classList.contains("correct") || button.classList.contains("wrong")) {
           return;
         }
@@ -114,6 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         button.classList.add("wrong", "shake");
+        errorAudio.currentTime = 0;
+        errorAudio.play();
         setTimeout(() => {
           button.classList.remove("shake");
         }, 350);
@@ -130,14 +182,15 @@ document.addEventListener("DOMContentLoaded", () => {
   function showCards() {
     const cards = document.querySelectorAll(".quiz-card");
     if (quizCounter) {
-        quizCounter.classList.add("show");
+      quizCounter.classList.add("show");
     }
     cards.forEach((card, index) => {
-        setTimeout(() => {
+      setTimeout(() => {
         card.classList.add("show");
-        }, index * 40);
+      }, index * 40);
     });
-    }
+  }
+
   function onScroll() {
     if (cardsShown || !reveal1) return;
 
@@ -155,6 +208,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Space") {
+      e.preventDefault();
+      toggleAudio();
+    }
+  });
+
   if (btn && reveal1) {
     btn.addEventListener("click", () => {
       const isOpen = btn.classList.toggle("open");
@@ -169,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (nextPageBtn) {
     nextPageBtn.addEventListener("click", () => {
-      window.location.href = "page5.html";
+      goToRevealPage();
     });
   }
 

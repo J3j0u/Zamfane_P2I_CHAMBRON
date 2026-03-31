@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Page 5</title>
+    <title>Révélation</title>
     <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Indie+Flower&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/page1.css">
@@ -13,18 +13,85 @@
     <div class="overlay"></div>
 
     <header class="page-header">
-        <h1>Page 5</h1>
+        <h1>Révélation</h1>
     </header>
 
     <main class="page-content">
-        <button class="discover" id="discoverBtn" aria-expanded="false" aria-controls="reveal1">
-            Suite <span class="arrow">↓</span>
-        </button>
-
-        <div class="reveal" id="reveal1">
-            <p>
-                Bravo, tu as terminé le quiz mort-subite.
+        <div class="reveal show" id="reveal1">
+            <p id="revealText">
+                Une nouvelle lettre du dernier album apparaît...
             </p>
+
+            <div class="album-word" id="albumWord" aria-label="Titre de l'album"></div>
+
+            <div class="final-letter-game" id="finalLetterGame">
+                <p class="final-question">Choisis la dernière lettre.</p>
+                <div class="final-choices" id="finalChoices"></div>
+                <p class="final-error" id="finalError"></p>
+            </div>
+
+            <div class="promo-block" id="promoBlock">
+                <p class="promo-title">Il s'agit effectivement de <em>Rahma</em> !
+                    <br>"<em>Rahma</em>" signifie miséricorde en arabe, un thème que Zamdane aborde fréquemment dans ses chansons
+                    <br>Zamdane dévoile son cinquième album composé de 16 titres. 
+                    <br>Il continue sur la même lancée que Solsad avec plusieurs clips et collaborations avec SCH, La Fève ou Solann. 
+                    <br>Il aborde des thèmes personnels, avec une vision novatrice mais aussi une meilleure connaissance de la musique. 
+                    <br><br>Je vous invite à aller écouter si l'expérience vous a plu ! </p>
+                    <br><br>Rahma
+                <img 
+                    class="promo-cover" 
+                    id="promoCover"
+                    src="../images/rahm.jpg" 
+                    alt="Pochette de l'album Rahma"
+                >
+
+                <p class="promo-instruction">
+                    Cliquez sur l'album pour mettre la musique en pause
+                </p>
+
+                <audio id="finalAudio" preload="auto" loop>
+                    <source src="../audios/LJF.mp3" type="audio/mpeg">
+                </audio>
+
+                <div class="promo-links-wrap">
+                    <p class="promo-links-title">Liens vers ses plateformes</p>
+
+                    <div class="promo-links">
+
+                        <div class="promo-link-container">
+                            <a href="https://link.deezer.com/s/32RxFS4nQ3qYAEkdZkBPW" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="promo-link">
+                                <img src="../images/deezer.png" alt="Deezer">
+                            </a>
+                            <div class="promo-link-name">Deezer</div>
+                        </div>
+
+                        <div class="promo-link-container">
+                            <a href="https://open.spotify.com/intl-fr/artist/5CtPAGoxpJ4yLJLx6CSrO8?si=qNVMyYv4SdqPMwKCfC2vQA" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="promo-link">
+                                <img src="../images/spotify.png" alt="Spotify">
+                            </a>
+                            <div class="promo-link-name">Spotify</div>
+                        </div>
+
+                        <div class="promo-link-container">
+                            <a href="http://www.youtube.com/@ZamdaneOfficiel" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="promo-link">
+                                <img src="../images/youtube.png" alt="YouTube">
+                            </a>
+                            <div class="promo-link-name">Youtube</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 

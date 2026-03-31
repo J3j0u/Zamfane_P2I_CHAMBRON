@@ -41,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const hintAudio2 = document.getElementById("hintAudio2");
   const hintAudio3 = document.getElementById("hintAudio3");
 
+  const SUCCESS_PAGE = "page3.html";
+
   const reveal2FullText =
     "Maintenant, n'oubliez-pas les paroles ! Choisissez parmi 4 réponses pour compléter les paroles de chansons connues de Zamdane. En cas de doute vous pourrez vous aider d'un indice audio.";
 
@@ -128,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(step);
       }
     }
+
     requestAnimationFrame(step);
   }
 
@@ -157,6 +160,12 @@ document.addEventListener("DOMContentLoaded", () => {
     errorEl.textContent = "";
   }
 
+  function goToRevealPage() {
+    const currentProgress = Number(localStorage.getItem("rahmaProgress") || "0");
+    localStorage.setItem("rahmaProgress", String(Math.max(currentProgress, 2)));
+    window.location.href = `page5.html?step=2&next=${encodeURIComponent(SUCCESS_PAGE)}`;
+  }
+
   function onScroll() {
     if (reveal2Started || !reveal1 || !reveal2) return;
     const r1 = reveal1.getBoundingClientRect();
@@ -173,6 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.removeEventListener("resize", onScroll);
     }
   }
+
   if (btn && reveal1) {
     btn.addEventListener("click", () => {
       const isOpen = btn.classList.toggle("open");
@@ -180,9 +190,11 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.setAttribute("aria-expanded", String(isOpen));
     });
   }
+
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll);
   onScroll();
+
   board1Cards.forEach((card) => {
     card.addEventListener("click", () => {
       if (card === board1Good) {
@@ -202,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         return;
       }
+
       shakeCard(card);
       showError(
         boardError1,
@@ -213,6 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     });
   });
+
   board2Cards.forEach((card) => {
     card.addEventListener("click", () => {
       if (card === board2Good) {
@@ -232,6 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         return;
       }
+
       shakeCard(card);
       showError(
         boardError2,
@@ -243,16 +258,18 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     });
   });
+
   board3Cards.forEach((card) => {
     card.addEventListener("click", () => {
       if (card === board3Good) {
         clearBoardError(boardError3, errorTimeout3);
         card.classList.add("correct");
         setTimeout(() => {
-          window.location.href = "page3.html";
+          goToRevealPage();
         }, 500);
         return;
       }
+
       shakeCard(card);
       showError(
         boardError3,
@@ -264,6 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     });
   });
+
   playHintAudio(hintAudioBtn1, hintAudio1);
   playHintAudio(hintAudioBtn2, hintAudio2);
   playHintAudio(hintAudioBtn3, hintAudio3);

@@ -15,8 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const validateBtn = document.getElementById("validateAlbumsBtn");
 
   const goodOrder = ["cover3", "cover1", "cover5", "cover2", "cover4"];
+  const SUCCESS_PAGE = "page4.html";
 
   let draggedCover = null;
+
+  function goToRevealPage() {
+    const currentProgress = Number(localStorage.getItem("rahmaProgress") || "0");
+    localStorage.setItem("rahmaProgress", String(Math.max(currentProgress, 3)));
+    window.location.href = `page5.html?step=3&next=${encodeURIComponent(SUCCESS_PAGE)}`;
+  }
 
   if (btn && reveal1) {
     btn.addEventListener("click", () => {
@@ -104,7 +111,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (allCorrect) {
-        window.location.href = "page4.html";
+        setTimeout(() => {
+          goToRevealPage();
+        }, 500);
       }
     });
   }
