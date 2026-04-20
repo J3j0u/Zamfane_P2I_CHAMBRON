@@ -6,6 +6,8 @@
     flex-wrap: wrap;
 }
 
+/* Lettres du mot final :
+   elles sont légèrement atténuées et un peu plus basses au départ */
 .album-letter {
     min-width: 58px;
     display: inline-flex;
@@ -20,6 +22,8 @@
     transition: opacity 0.7s ease, transform 0.7s ease, text-shadow 0.7s ease;
 }
 
+/* État révélé d’une lettre :
+   apparition plus nette avec une remontée */
 .album-letter.revealed {
     opacity: 1;
     transform: translateY(0);
@@ -28,6 +32,8 @@
         0 0 24px rgba(255,255,255,0.45);
 }
 
+/* Bloc du dernier mini-jeu :
+   caché au départ avec un décalage vers le bas */
 .final-letter-game {
     max-width: 700px;
     margin: 42px auto 0;
@@ -37,6 +43,8 @@
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
+/* Quand le dernier mini-jeu s’affiche :
+   apparition en fondu + remontée */
 .final-letter-game.show {
     opacity: 1;
     transform: translateY(0);
@@ -56,6 +64,8 @@
     padding-top: 10px;
 }
 
+/* Lettres proposées dans le dernier mini-jeu :
+   cachées au départ avec un décalage vers le bas */
 .final-choice {
     width: 90px;
     min-height: 68px;
@@ -74,6 +84,8 @@
         box-shadow 0.3s ease;
 }
 
+/* Animation d’apparition des lettres proposées :
+   elles montent progressivement au moment où le mini-jeu apparaît */
 .final-choice.rise-in {
     animation: finalChoiceLift 2s cubic-bezier(.22,1,.36,1) forwards;
 }
@@ -97,6 +109,8 @@
         inset 0 0 10px rgba(255, 76, 76, 0.16);
 }
 
+/* Animation d’erreur :
+   petite secousse quand une mauvaise lettre est choisie */
 .final-choice.shake {
     animation: shake 0.35s;
 }
@@ -106,6 +120,8 @@
     margin-top: 14px;
 }
 
+/* Bloc de conclusion final :
+   caché au départ avec un décalage vers le bas */
 .promo-block {
     max-width: 900px;
     margin: 48px auto 0;
@@ -115,6 +131,8 @@
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+/* Quand la conclusion s’affiche :
+   apparition progressive avec une remontée */
 .promo-block.show {
     opacity: 1;
     transform: translateY(0);
@@ -158,6 +176,8 @@
     align-items: center;
 }
 
+/* Liens vers les plateformes :
+   transition prendant le */
 .promo-link {
     display: inline-flex;
     justify-content: center;
@@ -169,6 +189,8 @@
     transition: all 0.3s ease;
 }
 
+/* Au survol :
+   remontée et agrandissement du lien */
 .promo-link:hover {
     transform: translateY(-4px) scale(1.05);
     background: rgba(255,255,255,0.14);
@@ -192,6 +214,8 @@
     letter-spacing: 1px;
 }
 
+/* Animation de montée des lettres proposées :
+   effet utilisé quand elles apparaissent dans le dernier mini-jeu */
 @keyframes finalChoiceLift {
     0% {
         opacity: 0;
@@ -204,6 +228,7 @@
     }
 }
 
+/* Animation de secousse utilisée en cas de mauvaise réponse */
 @keyframes shake {
     0% { transform: translateX(0); }
     20% { transform: translateX(-5px); }

@@ -21,6 +21,10 @@
             Envol <span class="arrow">↓</span>
         </button>
 
+        <!-- Bloc de transition dans le parcours :
+             Suite de la narration
+             Introduction au mini-jeu suivant 
+             sur les pochettes d’album. -->
         <div class="reveal" id="reveal1">
             <p>
                 Bravo, tu as complété ces 3 phrases !
@@ -36,7 +40,15 @@
                 Pour le prochain jeu, vous devrez d'ailleurs associer les pochettes d'album aux bons titres. Pour cela, vous pouvez cliquer sur un album et le glisser vers un autre pour échanger leurs positions. 
         </div>
 
+        <!-- Zone du mini-jeu :
+             à gauche les pochettes à remettre dans le bon ordre,
+             au centre le bouton de validation,
+             et à droite les titres d’albums à associer -->
         <div class="albums-match" id="albumsMatch">
+
+            <!-- Colonne des pochettes :
+                 L'utilisateur déplace ces images pour essayer de les faire
+                 correspondre aux bons titres affichés en face. -->
             <div class="albums-column albums-covers" id="albumsCovers">
                 <div class="album-row">
                     <img src="../images/cover1.jpg" alt="Pochette album 1" class="album-cover" data-cover="cover1" draggable="true">
@@ -55,12 +67,17 @@
                 </div>
             </div>
 
+            <!-- Colonne d’action (bouton de validation) :
+                 l'utilisateur clique ici une fois qu’il pense avoir remis
+                 les pochettes au bon endroit -->
             <div class="albums-actions">
                 <button class="validate-btn" id="validateAlbumsBtn" type="button">
                     Valider
                 </button>
             </div>
 
+            <!-- Colonne des titres :
+                 elle reste fixe -->
             <div class="albums-column albums-titles">
                 <div class="album-row">
                     <div class="album-title">Couleur de ma peine</div>

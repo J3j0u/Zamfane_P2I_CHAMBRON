@@ -16,6 +16,8 @@
     margin-bottom: 12px;
 }
 
+/* Compteur caché au départ :
+   il apparaît ensuite avec un fondu et une remontée */
 .quiz-counter {
     color: white;
     font-family: 'Sedgwick Ave Display', cursive;
@@ -26,6 +28,7 @@
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
+/* État visible du compteur */
 .quiz-counter.show {
     opacity: 1;
     transform: translateY(0);
@@ -38,6 +41,10 @@
     gap: 18px;
 }
 
+/* Cartes du quiz :
+   elles sont cachées au départ,
+   retournées de dos,
+   puis préparées pour leur animation d’apparition */
 .quiz-card {
     min-height: 110px;
     padding: 20px;
@@ -67,12 +74,17 @@
         background 0.25s ease;
 }
 
+/* Quand une carte est affichée :
+   elle passe de dos à face
+   avec l’effet de retournement ajouté sur cette page */
 .quiz-card.show {
     opacity: 1;
     transform: perspective(900px) rotateY(0deg) scale(1);
     filter: brightness(1);
 }
 
+/* Au survol :
+   remontée et agrandissement */
 .quiz-card:hover {
     transform: translateY(-4px) scale(1.03);
     border-color: white;
@@ -101,10 +113,14 @@
         inset 0 0 10px rgba(255, 76, 76, 0.16);
 }
 
+/* Animation d’erreur :
+   secousse utilisée quand un mauvais titre est choisi */
 .quiz-card.shake {
     animation: shake 0.35s;
 }
 
+/* Bouton final caché au départ :
+   il apparaît seulement quand tous les bons titres ont été trouvés */
 .next-page-wrap {
     margin-top: 36px;
     display: flex;
@@ -114,6 +130,8 @@
     pointer-events: none;
 }
 
+/* État visible du bouton :
+   apparition progressive avec une légère remontée */
 .next-page-wrap.show {
     opacity: 1;
     transform: translateY(0);
@@ -131,7 +149,10 @@
     background: transparent;
     border: 2px solid white;
     cursor: pointer;
+
+    /* Transition sur le bouton */
     transition: all 0.3s ease;
+
     font-family: 'Sedgwick Ave Display', cursive;
 }
 
@@ -145,6 +166,7 @@
     outline-offset: 6px;
 }
 
+/* Animation de secousse pour une mauvaise réponse */
 @keyframes shake {
     0% { transform: translateX(0); }
     20% { transform: translateX(-5px); }

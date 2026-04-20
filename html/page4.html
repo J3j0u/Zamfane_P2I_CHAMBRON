@@ -14,10 +14,19 @@
     <header class="page-header">
         <h1>Confirmation</h1>
     </header>
+
+    <!-- Contenu principal de la page :
+         texte de narration sur la suite du parcours de Zamdane
+         puis mini-jeu où il faut retrouver les titres de l'artiste -->
     <main class="page-content">
+
+        <!-- Bouton qui permet d’ouvrir la partie introduction de la page -->
         <button class="discover" id="discoverBtn" aria-expanded="false" aria-controls="reveal1">
             Nouvelle étape <span class="arrow">↓</span>
         </button>
+
+        <!-- Bloc de texte d’introduction :
+             suite de la narration -->
         <div class="reveal" id="reveal1">
             <p>
                 Bien joué, tu as retrouvé les bonnes pochettes.
@@ -35,13 +44,28 @@
                 Pour ce jeu, vous devrez trouver les titres publiés par Zamdane, parmi une liste de 20. Les autres titres appartiennent à d'autres artistes.
             </p>
         </div>
+
+        <!-- Zone principale du mini-jeu :
+             affiche le compteur de bonnes réponses restantes,
+             la grille des titres à sélectionner
+             puis le bouton pour passer à la suite une fois le jeu réussi -->
         <div class="quiz-board" id="quizBoard">
+
+            <!-- Haut de la zone de jeu :
+                 affichage du compteur de titres encore à trouver -->
             <div class="quiz-top">
                 <span class="quiz-counter" id="quizCounter">
                     Titres restants : 7
                 </span>
             </div>
+
+            <!-- Grille dans laquelle le JavaScript va générer
+                 les 20 titres cliquables du quiz -->
             <div class="quiz-grid" id="quizGrid"></div>
+
+            <!-- Bouton pour passer à la page suivante :
+                 caché au départ,
+                 puis affiché quand tous les bons titres ont été trouvés -->
             <div class="next-page-wrap" id="nextPageWrap">
                 <button class="validate-btn" id="nextPageBtn" type="button">
                     Passer à la page suivante
@@ -49,6 +73,12 @@
             </div>
         </div>
     </main>
+
+    <!-- Fichier JavaScript de la page 4 :
+         gestion de l’ouverture du texte,
+         de l’affichage progressif du quiz,
+         de la sélection des titres
+         et du passage à la page suivante -->
     <script src="../js/page4.js"></script>
 </body>
 </html>

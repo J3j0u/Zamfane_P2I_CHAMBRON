@@ -42,19 +42,30 @@
     border-radius: 16px;
     display: block;
     cursor: grab;
+
+    /* Transition pendant le drag and drop :
+       sert à rendre les changements d’état plus naturels
+       quand une pochette est déplacée, survolée ou échangée */
     transition: transform 0.14s ease-out, box-shadow 0.14s ease-out, opacity 0.14s ease-out, border-color 0.2s ease;
 }
 
+/* Pendant le déplacement :
+   la pochette devient un peu transparente
+   pour montrer qu’elle est en train d’être déplacée */
 .album-cover.dragging {
     opacity: 0.45;
 }
 
+/* Quand une autre pochette est survolée pendant le drag :
+   ajout d’un effet visuel pour montrer la zone cible */
 .album-cover.drag-over {
     box-shadow:
         0 0 12px rgba(255, 255, 255, 0.8),
         0 0 28px rgba(255, 255, 255, 0.6);
 }
 
+/* Après un échange :
+   petit agrandissement temporaire pour rendre le changement plus visible */
 .album-cover.swap-animate {
     transform: scale(1.08);
     box-shadow:
@@ -110,7 +121,10 @@
     background: transparent;
     border: 2px solid white;
     cursor: pointer;
+
+    /* Transition sur le bouton de validation */
     transition: all 0.3s ease;
+
     font-family: 'Sedgwick Ave Display', cursive;
 }
 

@@ -11,26 +11,43 @@
 </head>
 <body>
     <div class="overlay"></div>
-
     <header class="page-header">
         <h1>Révélation</h1>
     </header>
 
+    <!-- Contenu principal de la page :
+         affichage progressif du mot final,
+         mini-jeu pour deviner la dernière lettre,
+         puis bloc de conclusion avec la pochette et les liens -->
     <main class="page-content">
         <div class="reveal show" id="reveal1">
+
+            <!-- Texte principal affiché en haut :
+                 il change selon l’avancement dans la page
+                 pour annoncer la révélation de la lettre puis la conclusion -->
             <p id="revealText">
                 Une nouvelle lettre du dernier album apparaît...
             </p>
 
+            <!-- Zone où le JavaScript affiche les lettres du mot final de l’album -->
             <div class="album-word" id="albumWord" aria-label="Titre de l'album"></div>
 
+            <!-- Dernier mini-jeu :
+                 l’utilisateur doit choisir la bonne dernière lettre
+                 parmi plusieurs propositions -->
             <div class="final-letter-game" id="finalLetterGame">
                 <p class="final-question">Choisis la dernière lettre.</p>
                 <div class="final-choices" id="finalChoices"></div>
                 <p class="final-error" id="finalError"></p>
             </div>
 
+            <!-- Bloc final de conclusion :
+                 affiché après réussite du dernier mini-jeu.
+                 Il contient le texte de conclusion, la pochette,
+                 la musique finale et les liens vers les plateformes -->
             <div class="promo-block" id="promoBlock">
+
+                <!-- Texte de conclusion sur l’album Rahma -->
                 <p class="promo-title">Il s'agit effectivement de <em>Rahma</em> !
                     <br>"<em>Rahma</em>" signifie miséricorde en arabe, un thème que Zamdane aborde fréquemment dans ses chansons
                     <br>Zamdane dévoile son cinquième album composé de 16 titres. 
@@ -38,26 +55,31 @@
                     <br>Il aborde des thèmes personnels, avec une vision novatrice mais aussi une meilleure connaissance de la musique. 
                     <br><br>Je vous invite à aller écouter si l'expérience vous a plu ! </p>
                     <br><br>Rahma
+
+                <!-- Pochette de l’album final :
+                     cliquable pour mettre la musique en pause -->
                 <img 
                     class="promo-cover" 
                     id="promoCover"
                     src="../images/rahm.jpg" 
                     alt="Pochette de l'album Rahma"
                 >
-
                 <p class="promo-instruction">
                     Cliquez sur l'album pour mettre la musique en pause
                 </p>
 
+                <!-- Audio final de la page -->
                 <audio id="finalAudio" preload="auto" loop>
                     <source src="../audios/LJF.mp3" type="audio/mpeg">
                 </audio>
 
+                <!-- Bloc des liens externes : vers les plateformes de l'artiste -->
                 <div class="promo-links-wrap">
                     <p class="promo-links-title">Liens vers ses plateformes</p>
 
                     <div class="promo-links">
 
+                        <!-- Deezer -->
                         <div class="promo-link-container">
                             <a href="https://link.deezer.com/s/32RxFS4nQ3qYAEkdZkBPW" 
                                target="_blank" 
@@ -68,6 +90,7 @@
                             <div class="promo-link-name">Deezer</div>
                         </div>
 
+                        <!-- Spotify -->
                         <div class="promo-link-container">
                             <a href="https://open.spotify.com/intl-fr/artist/5CtPAGoxpJ4yLJLx6CSrO8?si=qNVMyYv4SdqPMwKCfC2vQA" 
                                target="_blank" 
@@ -78,6 +101,7 @@
                             <div class="promo-link-name">Spotify</div>
                         </div>
 
+                        <!-- YouTube -->
                         <div class="promo-link-container">
                             <a href="http://www.youtube.com/@ZamdaneOfficiel" 
                                target="_blank" 
@@ -95,6 +119,10 @@
         </div>
     </main>
 
+    <!-- Fichier JavaScript de la page 5 :
+         gestion de la révélation des lettres,
+         du dernier mini-jeu
+         et de l’affichage de la conclusion -->
     <script src="../js/page5.js"></script>
 </body>
 </html>

@@ -49,8 +49,15 @@
     font-size: 1.2rem;
     text-align: center;
     cursor: pointer;
+
+    /* Transition fluide au survol :
+       prépare les mouvements et changements visuels */
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
+
+/* Au survol :
+   la carte remonte et grossit un peu
+   pour montrer qu’elle est interactive */
 .board-card:hover {
     transform: translateY(-4px) scale(1.03);
     border-color: white;
@@ -59,13 +66,18 @@
         0 0 28px rgba(255, 255, 255, 0.6),
         inset 0 0 10px rgba(255, 255, 255, 0.25);
 }
+
 .board-card:focus-visible {
     outline: 3px solid white;
     outline-offset: 6px;
 }
+
+/* Animation d’erreur :
+   secousse utilisée quand une mauvaise réponse est choisie */
 .board-card.shake {
     animation: shake 0.35s;
 }
+
 .board-card.correct {
     border-color: #4cff4c;
     box-shadow: 0 0 15px rgba(76, 255, 76, 0.6);
@@ -77,12 +89,19 @@
     font-family: 'Sedgwick Ave Display', cursive;
     letter-spacing: 2px;
     text-align: center;
+
+    /* Message caché au départ */
     opacity: 0;
+
+    /* Apparition progressive du message d’erreur */
     transition: opacity 0.4s ease;
 }
+
+/* Message visible après mauvaise réponse */
 .board-error.show {
     opacity: 1;
 }
+
 .hint-audio {
     position: absolute;
     right: -130px;
@@ -92,22 +111,33 @@
     padding: 8px 33px;
     font-size: 0.9rem;
 }
+
+/* Bloc suivant du mini-jeu :
+   caché au départ avec un décalage vers le bas */
 .board-hidden {
     margin-top: 95vh;
     opacity: 0;
     transform: translateY(60px);
     pointer-events: none;
 }
+
+/* Quand il s’affiche :
+   apparition en fondu + remontée */
 .board-hidden.show {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
     transition: opacity 0.7s ease, transform 0.7s ease;
 }
+
+/* Ancien bloc légèrement estompé
+   pour mettre l’attention sur le suivant */
 .board-fade-out {
     opacity: 0.18;
     transition: opacity 0.45s ease;
 }
+
+/* Animation de secousse pour mauvaise réponse */
 @keyframes shake {
     0% { transform: translateX(0); }
     25% { transform: translateX(-3px); }
@@ -115,6 +145,7 @@
     75% { transform: translateX(-2px); }
     100% { transform: translateX(0); }
 }
+
 @media (max-width: 700px) {
     .board-grid {
         grid-template-columns: 1fr;

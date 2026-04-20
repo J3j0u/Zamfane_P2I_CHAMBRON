@@ -1,5 +1,4 @@
 window.history.scrollRestoration = "manual";
-
 window.addEventListener("load", () => {
   window.scrollTo(0, 0);
 
@@ -9,6 +8,10 @@ window.addEventListener("load", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  /* Récupération des éléments principaux de la page :
+     bouton d’introduction, blocs de contenu,
+     texte explicatif, cartes de réponses,
+     messages d’erreur et indices audio */
   const btn = document.getElementById("discoverBtn");
   const reveal1 = document.getElementById("reveal1");
   const reveal2 = document.getElementById("reveal2");
@@ -41,15 +44,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const hintAudio2 = document.getElementById("hintAudio2");
   const hintAudio3 = document.getElementById("hintAudio3");
 
+  /* Constantes liées à cette page :
+     page suivante à ouvrir après réussite
+     et texte d’introduction du mini-jeu sur les paroles */
   const SUCCESS_PAGE = "page3.html";
 
   const reveal2FullText =
     "Maintenant, n'oubliez-pas les paroles ! Choisissez parmi 4 réponses pour compléter les paroles de chansons connues de Zamdane. En cas de doute vous pourrez vous aider d'un indice audio.";
 
+  /* Variables d’état de la page :
+     servent à savoir si la deuxième partie a déjà été lancée
+     et si les questions 2 et 3 ont déjà été affichées */
   let reveal2Started = false;
   let board2Shown = false;
   let board3Shown = false;
 
+  /* Références de délais pour les messages d’erreur :
+     permettent d’éviter que plusieurs timers se superposent
+     quand le joueur se trompe plusieurs fois */
   let errorTimeout1;
   let errorTimeout2;
   let errorTimeout3;
@@ -70,11 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
     el.textContent = "";
     const chars = [...text];
     const spans = [];
+
     for (const ch of chars) {
       if (ch === "\n") {
         el.appendChild(document.createElement("br"));
         continue;
       }
+
       const span = document.createElement("span");
       span.style.opacity = "0";
       span.style.transition = "opacity 220ms ease";
@@ -94,10 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }, msPerChar);
   }
 
+  /* Affichage d’un message d’erreur :
+     utilisé quand le joueur choisit une mauvaise réponse
+     dans une des questions du jeu */
   function showError(errorEl, message, timeoutRefSetter, currentTimeout) {
     if (!errorEl) return;
     clearTimeout(currentTimeout);
     errorEl.classList.remove("show");
+
     timeoutRefSetter(
       setTimeout(() => {
         errorEl.textContent = message;
@@ -106,6 +124,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
+  /* Scroll automatique vers la prochaine question
+     quand la bone réponse est trouvée */
   function smoothScrollToElement(element, duration = 900, offset = 40) {
     if (!element) return;
 
@@ -117,6 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const distance = finalY - startY;
     const startTime = performance.now();
 
+    /* Fonction d’animation :
+       rend le défilement plus naturel qu’un scroll brutal */
     function easeOutCubic(t) {
       return 1 - Math.pow(1 - t, 3);
     }
@@ -125,7 +147,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const eased = easeOutCubic(progress);
+
       window.scrollTo(0, startY + distance * eased);
+
       if (progress < 1) {
         requestAnimationFrame(step);
       }
@@ -134,8 +158,12 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(step);
   }
 
+  /* Gestion des indices audio :
+     un clic lance l’extrait,
+     un deuxième clic l’arrête et le remet au début */
   function playHintAudio(button, audio) {
     if (!button || !audio) return;
+
     button.addEventListener("click", () => {
       if (audio.paused) {
         audio.play();
@@ -146,13 +174,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* Petite animation de secousse :
+     donne un retour visuel quand le joueur se trompe sur une carte */
   function shakeCard(card) {
     card.classList.add("shake");
+
     setTimeout(() => {
       card.classList.remove("shake");
     }, 350);
   }
 
+  /* Nettoyage du message d’erreur d’un bloc :
+     quand le joueur finit par cliquer sur la bonne réponse */
   function clearBoardError(errorEl, timeoutRef) {
     if (!errorEl) return;
     clearTimeout(timeoutRef);
@@ -160,20 +193,29 @@ document.addEventListener("DOMContentLoaded", () => {
     errorEl.textContent = "";
   }
 
+  /* Redirection vers la page de révélation de la lettre :
+     met aussi à jour la progression du joueur dans le localStorage
+     pour garder l’avancement du site */
   function goToRevealPage() {
     const currentProgress = Number(localStorage.getItem("rahmaProgress") || "0");
     localStorage.setItem("rahmaProgress", String(Math.max(currentProgress, 2)));
     window.location.href = `page5.html?step=2&next=${encodeURIComponent(SUCCESS_PAGE)}`;
   }
 
+  /* Détection du scroll :
+     déclenche l’arrivée de la deuxième partie de la page
+     quand le joueur a assez avancé après le texte d’introduction */
   function onScroll() {
     if (reveal2Started || !reveal1 || !reveal2) return;
+
     const r1 = reveal1.getBoundingClientRect();
     const vh = window.innerHeight;
     const start = vh * 0.55;
     const end = vh * 0.2;
     const progress = clamp01((start - r1.bottom) / (start - end));
+
     setReveal2Progress(progress);
+
     if (progress >= 0.75) {
       reveal2Started = true;
       setReveal2Progress(1);
@@ -195,19 +237,26 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", onScroll);
   onScroll();
 
+  /* Gestion de la première question :
+     si le joueur choisit la bonne réponse,
+     on valide visuellement puis on affiche la question suivante.
+     Sinon, on secoue la carte et on affiche une erreur. */
   board1Cards.forEach((card) => {
     card.addEventListener("click", () => {
       if (card === board1Good) {
         clearBoardError(boardError1, errorTimeout1);
         card.classList.add("correct");
+
         if (board2Wrap) {
           if (board1) {
             board1.classList.add("board-fade-out");
           }
+
           if (!board2Shown) {
             board2Shown = true;
             board2Wrap.classList.add("show");
           }
+
           setTimeout(() => {
             smoothScrollToElement(board2Wrap, 900, 20);
           }, 120);
@@ -227,19 +276,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* Deuxième question vec apparition de la troisième en cas de réussite */
   board2Cards.forEach((card) => {
     card.addEventListener("click", () => {
       if (card === board2Good) {
         clearBoardError(boardError2, errorTimeout2);
         card.classList.add("correct");
+
         if (board3Wrap) {
           if (board2) {
             board2.classList.add("board-fade-out");
           }
+
           if (!board3Shown) {
             board3Shown = true;
             board3Wrap.classList.add("show");
           }
+
           setTimeout(() => {
             smoothScrollToElement(board3Wrap, 900, 20);
           }, 120);
@@ -259,11 +312,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* Troisième question :
+     Si la réponse est bonne, on attend un peu puis on passe
+     à la page de révélation avant la suite du site. */
   board3Cards.forEach((card) => {
     card.addEventListener("click", () => {
       if (card === board3Good) {
         clearBoardError(boardError3, errorTimeout3);
         card.classList.add("correct");
+
         setTimeout(() => {
           goToRevealPage();
         }, 500);
@@ -282,6 +339,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* Activation des 3 boutons d’indice audio :
+     chaque question a son propre extrait d’aide */
   playHintAudio(hintAudioBtn1, hintAudio1);
   playHintAudio(hintAudioBtn2, hintAudio2);
   playHintAudio(hintAudioBtn3, hintAudio3);

@@ -1,5 +1,4 @@
 window.history.scrollRestoration = "manual";
-
 window.addEventListener("load", () => {
   window.scrollTo(0, 0);
 
@@ -9,6 +8,9 @@ window.addEventListener("load", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  /* Récupération des éléments principaux de la page :
+     bouton d’ouverture du texte, bloc d’intro,
+     grille du quiz, compteur et bouton de passage à la suite */
   const btn = document.getElementById("discoverBtn");
   const reveal1 = document.getElementById("reveal1");
   const quizGrid = document.getElementById("quizGrid");
@@ -16,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextPageBtn = document.getElementById("nextPageBtn");
   const quizCounter = document.getElementById("quizCounter");
 
+  /* Liste des vrais titres de Zamdane à retrouver dans le quiz */
   const goodTitles = [
     "Déviant",
     "Une balle qui touche le ciel",
@@ -26,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Lettre à mon dieu"
   ];
 
+  /* Liste de titres d'autres artistes ajoutés pour mélanger les réponses */
   const badTitles = [
     "La bohème",
     "Loyal",
@@ -42,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "Petit frère"
   ];
 
+  /* Association entre chaque bon titre et son extrait audio :
+     quand un bon titre est cliqué, un extrait est joué */
   const titleAudios = {
     "Déviant": "../audios/1.mp3",
     "Une balle qui touche le ciel": "../audios/2.mp3",
@@ -52,12 +58,19 @@ document.addEventListener("DOMContentLoaded", () => {
     "Lettre à mon dieu": "../audios/7.mp3"
   };
 
+  /* Variables de suivi du quiz :
+     savoir si les cartes ont déjà été affichées,
+     compter les bonnes réponses,
+     mémoriser l’audio en cours
+     et préparer le son d’erreur */
   let cardsShown = false;
   let correctCount = 0;
   let currentAudio = null;
   let currentTitle = null;
   let errorAudio = new Audio("../audios/error.mp3");
 
+  /* Mise à jour du compteur affiché en haut du quiz :
+     indique combien de bons titres il reste encore à trouver */
   function updateCounter() {
     const remaining = goodTitles.length - correctCount;
     if (quizCounter) {
@@ -65,6 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /* Mélange aléatoire d’un tableau :
+     utilisé ici pour répartir les bons et faux titres
+     dans un ordre différent à chaque actualisation de la page */
   function shuffle(array) {
     const copy = [...array];
     for (let i = copy.length - 1; i > 0; i -= 1) {
@@ -74,6 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return copy;
   }
 
+  /* Lecture d’un extrait audio lié à un bon titre :
+     si un autre extrait était déjà lancé, il est coupé
+     avant de jouer le nouveau */
   function playTitleAudio(title) {
     const src = titleAudios[title];
     if (!src) return;
@@ -88,6 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
     currentAudio.play();
   }
 
+  /* Lecture / pause de l’extrait actuellement sélectionné :
+     quand l’utilisateur reclique sur le même bon titre, l'audio se relance */
   function toggleAudio() {
     if (!currentAudio) return;
 
@@ -98,12 +119,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /* Passage à la page suivante une fois le quiz réussi :
+     enregistre la progression du joueur
+     puis envoie vers la page de révélation de la 4e lettre */
   function goToRevealPage() {
     const currentProgress = Number(localStorage.getItem("rahmaProgress") || "0");
     localStorage.setItem("rahmaProgress", String(Math.max(currentProgress, 4)));
     window.location.href = "page5.html?step=4";
   }
 
+  /* Construction complète du quiz :
+     mélange les bons et faux titres,
+     crée tous les boutons,
+     puis gère ce qu’il se passe quand on clique dessus */
   function buildQuiz() {
     if (!quizGrid) return;
 
@@ -138,6 +166,10 @@ document.addEventListener("DOMContentLoaded", () => {
       button.textContent = item.title;
       button.dataset.good = item.isGood ? "true" : "false";
 
+      /* Gestion du clic sur un titre :
+         lecture d’un extrait si c’est un vrai titre,
+         validation visuelle si la réponse est bonne,
+         ou affichage d’une erreur si c’est faux */
       button.addEventListener("click", () => {
         if (button.dataset.good === "true") {
           if (currentAudio && currentTitle === item.title) {
@@ -156,6 +188,8 @@ document.addEventListener("DOMContentLoaded", () => {
           correctCount += 1;
           updateCounter();
 
+          /* Quand tous les bons titres ont été trouvés,
+             affichage du bouton pour passer à la suite */
           if (correctCount === goodTitles.length && nextPageWrap) {
             nextPageWrap.classList.add("show");
           }
@@ -163,6 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
+        /* Si le titre choisi est faux :
+           effet visuel d’erreur + son d’erreur */
         button.classList.add("wrong", "shake");
         errorAudio.currentTime = 0;
         errorAudio.play();
@@ -179,6 +215,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return Math.max(0, Math.min(1, x));
   }
 
+  /* Affichage progressif des cartes du quiz :
+     les titres apparaissent un par un
+     avec le compteur en haut */
   function showCards() {
   const cards = document.querySelectorAll(".quiz-card");
 
@@ -193,6 +232,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 }
 
+  /* Détection du scroll :
+     permet de lancer l’apparition du quiz
+     quand l’utilisateur est assez descendu
+     après avoir ouvert le texte d’introduction */
   function onScroll() {
     if (cardsShown || !reveal1) return;
 
@@ -210,6 +253,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /* Raccourci clavier :
+     la touche espace permet de mettre en pause
+     ou relancer l’extrait audio en cours */
   document.addEventListener("keydown", (e) => {
     if (e.code === "Space") {
       e.preventDefault();
@@ -229,12 +275,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* Gestion du bouton final :
+     permet d’aller vers la page suivante
+     une fois le quiz terminé */
   if (nextPageBtn) {
     nextPageBtn.addEventListener("click", () => {
       goToRevealPage();
     });
   }
 
+  /* Initialisation de la page :
+     création du quiz,
+     mise à jour du compteur,
+     puis surveillance du scroll pour afficher les cartes */
   buildQuiz();
   updateCounter();
 

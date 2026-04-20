@@ -1,0 +1,2 @@
+- Lancement de l'application : lancer le fichier index.html dans un navigateur
+- Commentaires : le css n'est commenté que sur les éléments d'animations et pas graphiques

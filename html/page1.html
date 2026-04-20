@@ -9,14 +9,26 @@
     <link rel="stylesheet" href="../css/page1.css">
 </head>
 <body>
+    
     <div class="overlay"></div>
+
     <header class="page-header">
         <h1>Les débuts</h1>
     </header>
+
+    <!-- Contenu principal de la page 1 :
+         présentation de l’artiste,
+         puis mise en place du blindtest -->
     <main class="page-content">
+
+        <!-- Bouton qui permet d’ouvrir la partie présentation -->
         <button class="discover" id="discoverBtn" aria-expanded="false" aria-controls="reveal1">
             Présentation <span class="arrow">↓</span>
         </button>
+
+        <!-- Bloc de présentation :
+             texte d’introduction sur Zamdane
+             + explication du principe général du site -->
         <div class="reveal" id="reveal1">
             <p>
                 Zamdane, de son vrai nom Ayoub Zaidane est un jeune artiste né à Marrakech au Maroc.
@@ -25,9 +37,18 @@
                 <br>À la fin de chaque mini-jeu, vous découvrirez une lettre composant le nom de son dernier album !
             </p>
         </div>
+
+        <!-- Deuxième bloc de la page :
+             zone qui sert au blindtest avec le texte affiché progressivement,
+             l’extrait audio, les indices et le champ de réponse -->
         <div class="next-block" id="reveal2">
             <p id="reveal2Text"></p>
             <br>
+
+            <!-- Zone audio du blindtest :
+                 contient l’extrait à écouter,
+                 le bouton de lecture
+                 et les boutons d’indice / solution -->
             <div class="audio-wrap hidden" id="audioWrap">
                 <audio id="audioExtrait" preload="none">
                     <source src="../audios/audio-mystere.mp3" type="audio/mpeg">
@@ -46,7 +67,13 @@
                     </div>
                 </div>
             </div>
+
             <br>
+
+            <!-- Zone de réponse du blindtest :
+                 champ de saisie, bouton de validation,
+                 message d’erreur
+                 et éléments d’aide cachés au départ -->
             <div class="answer-wrap hidden" id="answerWrap">
                 <div class="answer-core">
                     <form class="answer-row" id="answerForm" novalidate>
@@ -61,6 +88,12 @@
             </div>
         </div>
     </main>
+
+    <!-- Fichier JavaScript de la page 1 :
+         gestion de l’apparition des blocs,
+         du blindtest,
+         des indices
+         et de la validation de la réponse -->
     <script src="../js/page1.js"></script>
 </body>
 </html>

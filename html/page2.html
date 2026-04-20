@@ -14,10 +14,16 @@
     <header class="page-header">
         <h1>Premiers projets</h1>
     </header>
+    <!-- Contenu principal :
+         texte d’introduction puis mini-jeu sur les paroles -->
     <main class="page-content">
+        <!-- Bouton qui ouvre le premier texte explicatif -->
         <button class="discover" id="discoverBtn" aria-expanded="false" aria-controls="reveal1">
             Décollage <span class="arrow">↓</span>
         </button>
+        <!-- Bloc narratif :
+             rappelle la bonne réponse précédente
+             puis présente les premiers projets de Zamdane -->
         <div class="reveal" id="reveal1">
             <p>
                 Il s'agissait bien de <em>Favaro</em> ! 
@@ -27,11 +33,17 @@
                 On retrouve des morceaux marquants comme <em>Quand j'fume</em> et <em>Disaster</em> qui permettent déjà de constater l'identité assez sombre et à la fois déterminée de l'artiste.
             </p>
         </div>
+        <!-- Deuxième partie :
+             introduction du mini-jeu
+             puis 3 questions à compléter -->
         <div class="next-block" id="reveal2">
+            <!-- Texte affiché progressivement* -->
             <p id="reveal2Text"></p>
-
+            <!-- Première question du jeu -->
             <div class="board-wrapper">
                 <div class="board" id="board1">
+                    <!-- En-tête :
+                         extrait de phrase + indice audio -->
                     <div class="board-header">
                         Reviens vers moi et donne-moi du temps, j'ai déjà pleuré du sang...("Fleurs")
 
@@ -39,20 +51,27 @@
                             <button class="audio-btn" id="hintAudioBtn1" type="button">
                                 indice
                             </button>
+                            <!-- Audio d’aide pour reconnaître le morceau -->
                             <audio id="hintAudio1">
                                 <source src="../audios/indice1.mp3" type="audio/mpeg">
                             </audio>
                         </div>
                     </div>
+                    <!-- 4 choix proposés au joueur -->
                     <div class="board-grid">
                         <button class="board-card" type="button">Mais les peines s’envolent au gré du vent</button>
                         <button class="board-card" type="button">Mais les larmes s'envolent au gré du temps</button>
                         <button class="board-card" type="button">Mais le mal s'efface avec le temps</button>
+                        <!-- Bonne réponse repérée pour le JavaScript -->
                         <button class="board-card board1-good" type="button">Mais les larmes s'envolent au gré du vent</button>
                     </div>
+                    <!-- Message d’erreur si mauvais choix -->
                     <p class="board-error" id="boardError1"></p>
                 </div>
             </div>
+            <!-- Deuxième question :
+                 cachée au départ,
+                 débloquée après réussite de la première -->
             <div class="board-wrapper board-hidden" id="board2Wrap">
                 <div class="board" id="board2">
                     <div class="board-header">
@@ -68,6 +87,7 @@
                     </div>
                     <div class="board-grid">
                         <button class="board-card" type="button">3 vies dans leurs souliers</button>
+                        <!-- Bonne réponse -->
                         <button class="board-card board2-good" type="button">3 piges dans leurs souliers</button>
                         <button class="board-card" type="button">Une heure dans mes patins</button>
                         <button class="board-card" type="button">3 ans dans leurs sabats</button>
@@ -75,6 +95,8 @@
                     <p class="board-error" id="boardError2"></p>
                 </div>
             </div>
+            <!-- Troisième question :
+                 dernière étape avant la page suivante -->
             <div class="board-wrapper board-hidden" id="board3Wrap">
                 <div class="board" id="board3">
                     <div class="board-header">
@@ -91,6 +113,7 @@
                     <div class="board-grid">
                         <button class="board-card" type="button">j'attends les réponses</button>
                         <button class="board-card" type="button">j'ai toutes les réponses</button>
+                        <!-- Bonne réponse -->
                         <button class="board-card board3-good" type="button">je n'ai aucune réponse</button>
                         <button class="board-card" type="button">je cherche les réponses</button>
                     </div>
@@ -99,6 +122,12 @@
             </div>
         </div>
     </main>
+    <!-- JavaScript de la page :
+         animations,
+         affichage progressif,
+         gestion des réponses,
+         indices audio
+         et passage à la page suivante -->
     <script src="../js/page2.js" defer></script>
 </body>
 </html>

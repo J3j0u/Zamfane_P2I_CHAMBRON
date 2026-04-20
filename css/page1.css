@@ -45,6 +45,8 @@ body {
     text-transform: uppercase;
     cursor: pointer;
 }
+/* animation au survol du bouton d’ouverture :
+   le texte bouge légèrement pour rendre l’interaction plus vivante */
 .discover:hover {
     animation: microshake 0.18s ease-in-out infinite;
 }
@@ -52,13 +54,18 @@ body {
     outline: 3px solid white;
     outline-offset: 6px;
 }
+/* Flèche du bouton :
+   préparation d’une transition fluide pour sa rotation */
 .arrow {
     display: inline-block;
     transition: transform 0.3s ease;
 }
+/* Quand le bloc d’intro est ouvert,
+   la flèche se retourne pour montrer le changement d’état */
 .discover.open .arrow {
     transform: rotate(180deg);
 }
+/* Animation de micro-mouvement utilisée sur le bouton au survol */
 @keyframes microshake {
     0% { transform: translateX(0); }
     25% { transform: translateX(-0.6px); }
@@ -66,6 +73,9 @@ body {
     75% { transform: translateX(-0.4px); }
     100% { transform: translateX(0); }
 }
+/* Bloc de présentation :
+   il est caché au départ avec une légère descente,
+   pour pouvoir apparaître de façon plus fluide */
 .reveal {
     max-width: 900px;
     margin: 25px auto 0;
@@ -74,11 +84,16 @@ body {
     pointer-events: none;
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
+/* État visible du bloc de présentation :
+   apparition en fondu + léger mouvement vers le haut */
 .reveal.show {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
+/* Deuxième bloc de la page :
+   même logique, il commence caché avec un léger décalage vertical
+   avant son apparition progressive pendant le scroll */
 .next-block {
     max-width: 900px;
     margin: 20vh auto 0;
@@ -221,6 +236,9 @@ body {
     letter-spacing: 1px;
     opacity: 0.95;
 }
+/* Indice texte :
+   caché au départ puis affiché avec un fondu
+   et une remontée quand le joueur clique sur "Indice" */
 .hint-text {
     position: absolute;
     top: 44px;
@@ -234,11 +252,15 @@ body {
     text-align: left;
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
+/* État visible de l’indice texte */
 .hint-text.show {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
+/* Indice image :
+   caché au départ puis révélé avec un fondu
+   et un mouvement vertical */
 .hint-img {
     position: absolute;
     top: calc(100% + 14px);
@@ -250,22 +272,29 @@ body {
     pointer-events: none;
     transition: opacity 0.7s ease, transform 0.7s ease;
 }
+/* État visible de l’image d’indice */
 .hint-img.show {
     opacity: 1;
     transform: translate(-50%, 0);
     pointer-events: auto;
 }
+/* État caché utilisé pour certains blocs :
+   permet de préparer leur apparition progressive */
 .hidden {
     opacity: 0;
     transform: translateY(12px);
     pointer-events: none;
 }
+/* État visible utilisé après affichage :
+   apparition en fondu + mouvement vers le haut */
 .fade-in {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
+/* Si l’utilisateur préfère réduire les animations :
+   suppression des mouvements non essentiels */
 @media (prefers-reduced-motion: reduce) {
     .discover:hover {
         animation: none;
