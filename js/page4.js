@@ -180,16 +180,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showCards() {
-    const cards = document.querySelectorAll(".quiz-card");
-    if (quizCounter) {
-      quizCounter.classList.add("show");
-    }
-    cards.forEach((card, index) => {
-      setTimeout(() => {
-        card.classList.add("show");
-      }, index * 40);
-    });
+  const cards = document.querySelectorAll(".quiz-card");
+
+  if (quizCounter) {
+    quizCounter.classList.add("show");
   }
+
+  cards.forEach((card, index) => {
+    setTimeout(() => {
+      card.classList.add("show");
+    }, index * 85);
+  });
+}
 
   function onScroll() {
     if (cardsShown || !reveal1) return;

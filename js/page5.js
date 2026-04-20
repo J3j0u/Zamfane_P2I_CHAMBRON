@@ -18,6 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const finalAudio = document.getElementById("finalAudio");
   const revealText = document.getElementById("revealText");
 
+  const validationAudio = new Audio("../audios/validation.mp3");
+  validationAudio.preload = "auto";
+  validationAudio.volume = 0.6;
+
   const params = new URLSearchParams(window.location.search);
   const nextPage = params.get("next");
   const stepFromUrl = Number(params.get("step") || "1");
@@ -34,6 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
       [copy[i], copy[j]] = [copy[j], copy[i]];
     }
     return copy;
+  }
+
+  function playValidationSound() {
+    validationAudio.pause();
+    validationAudio.currentTime = 0;
+    validationAudio.play().catch(() => {});
   }
 
   function buildLetters() {
@@ -70,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
       current.classList.add("revealed");
       current.style.opacity = "";
       current.style.transform = "";
+      playValidationSound();
     }, 400);
 
     if (step < 4 && nextPage) {
@@ -83,9 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (revealText) {
           revealText.textContent = "Trouve maintenant la dernière lettre.";
         }
+
         if (finalLetterGame) {
           finalLetterGame.classList.add("show");
         }
+
+        animateFinalChoices();
       }, 1700);
     }
   }
@@ -104,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
       lastLetter.classList.add("revealed");
       lastLetter.style.opacity = "";
       lastLetter.style.transform = "";
+      playValidationSound();
     }, 120);
 
     localStorage.setItem("rahmaProgress", "5");
@@ -117,6 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function shakeButton(button) {
     button.classList.add("shake");
+
     setTimeout(() => {
       button.classList.remove("shake");
     }, 350);
@@ -124,6 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function startFinalMusic() {
     if (!finalAudio) return;
+
     finalAudio.volume = 0.18;
     finalAudio.play();
   }
@@ -157,6 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
       button.addEventListener("click", () => {
         if (letter === "A") {
           const buttons = finalChoices.querySelectorAll(".final-choice");
+
           buttons.forEach((btn) => {
             btn.disabled = true;
           });
@@ -179,6 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (revealText) {
               revealText.textContent = "Le dernier album se révèle enfin.";
             }
+
             showPromo();
             startFinalMusic();
           }, 1200);
@@ -202,6 +221,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function animateFinalChoices() {
+    const buttons = document.querySelectorAll(".final-choice");
+
+    buttons.forEach((button, index) => {
+      button.classList.remove("rise-in");
+      void button.offsetWidth;
+
+      setTimeout(() => {
+        button.classList.add("rise-in");
+      }, index * 220);
+    });
+  }
+
   if (promoCover) {
     promoCover.addEventListener("click", () => {
       toggleFinalMusic();
@@ -209,6 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   buildLetters();
-  revealCurrentLetter();
   buildFinalChoices();
+  revealCurrentLetter();
 });

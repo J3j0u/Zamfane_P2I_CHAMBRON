@@ -52,11 +52,16 @@
     font-size: 1.2rem;
     text-align: center;
     cursor: pointer;
+
     opacity: 0;
-    transform: translateY(30px);
+    transform: perspective(900px) rotateY(180deg) scale(0.92);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    filter: brightness(0.7);
+
     transition:
-        opacity 0.5s ease,
-        transform 0.5s ease,
+        opacity 0.55s ease,
+        transform 2.5s cubic-bezier(.22,1,.36,1),
         box-shadow 0.25s ease,
         border-color 0.25s ease,
         background 0.25s ease;
@@ -64,7 +69,8 @@
 
 .quiz-card.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: perspective(900px) rotateY(0deg) scale(1);
+    filter: brightness(1);
 }
 
 .quiz-card:hover {

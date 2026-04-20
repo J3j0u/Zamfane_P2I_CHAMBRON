@@ -52,6 +52,8 @@
     justify-content: center;
     gap: 18px;
     flex-wrap: wrap;
+    overflow: hidden;
+    padding-top: 10px;
 }
 
 .final-choice {
@@ -63,7 +65,17 @@
     font-family: 'Sedgwick Ave Display', cursive;
     font-size: 2rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(120px);
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.final-choice.rise-in {
+    animation: finalChoiceLift 2s cubic-bezier(.22,1,.36,1) forwards;
 }
 
 .final-choice:hover {
@@ -178,6 +190,18 @@
     font-family: 'Sedgwick Ave Display', cursive;
     font-size: 1.2rem;
     letter-spacing: 1px;
+}
+
+@keyframes finalChoiceLift {
+    0% {
+        opacity: 0;
+        transform: translateY(120px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes shake {
