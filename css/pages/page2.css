@@ -1,0 +1,196 @@
+/* ============================================================
+   pages/page2.css
+   Mini-jeu "n'oubliez pas les paroles" :
+   plateaux de questions a choix multiples avec indices audio.
+   ============================================================ */
+
+.board-wrapper {
+    position: relative;
+}
+
+.board {
+    width: 100%;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.board-header {
+    position: relative;
+    width: 100%;
+    min-height: 110px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 18px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.18)
+    );
+    text-align: center;
+    font-family: var(--font-hand);
+}
+
+.board-title {
+    pointer-events: none;
+}
+
+.board-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.board-card {
+    min-height: 130px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text);
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+
+    /* Transition fluide au survol */
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Au survol : la carte remonte et grossit un peu */
+.board-card:hover {
+    transform: translateY(-4px) scale(1.03);
+    border-color: var(--color-border);
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 0.8),
+        0 0 28px rgba(255, 255, 255, 0.6),
+        inset 0 0 10px rgba(255, 255, 255, 0.25);
+}
+
+.board-card:focus-visible {
+    outline: 3px solid var(--color-border);
+    outline-offset: 6px;
+}
+
+/* Animation d'erreur : secousse quand une mauvaise reponse est choisie.
+   Amplitude propre a cette page (3px), d'ou un keyframes dedie. */
+.board-card.shake {
+    animation: board-shake 0.35s;
+}
+
+.board-card.correct {
+    border-color: var(--color-correct);
+    box-shadow: 0 0 15px rgba(76, 255, 76, 0.6);
+}
+
+.board-error {
+    min-height: 1.3em;
+    margin-top: 8px;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    letter-spacing: 2px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.board-error.show {
+    opacity: 1;
+}
+
+.hint-audio {
+    position: absolute;
+    right: -130px;
+    bottom: 0;
+}
+
+.hint-audio .audio-btn {
+    padding: 8px 33px;
+    font-size: 0.9rem;
+}
+
+/* Bloc suivant du mini-jeu : cache au depart avec un decalage */
+.board-hidden {
+    margin-top: 95vh;
+    opacity: 0;
+    transform: translateY(60px);
+    pointer-events: none;
+}
+
+/* Quand il s'affiche : apparition en fondu + remontee */
+.board-hidden.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Ancien bloc legerement estompe pour focaliser l'attention */
+.board-fade-out {
+    opacity: 0.18;
+    transition: opacity 0.45s ease;
+}
+
+/* Secousse d'erreur propre a cette page (amplitude 3px) */
+@keyframes board-shake {
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-3px); }
+    50%  { transform: translateX(3px); }
+    75%  { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+/* L'indice audio est place a droite du bandeau en grand ecran.
+   Sous 1100px il n'y a plus la place : on le repositionne sous
+   le bandeau, centre. */
+@media (max-width: 1100px) {
+    .hint-audio {
+        position: static;
+        margin-top: 12px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .board-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* Tablettes : les choix passent sur une seule colonne */
+@media (max-width: 700px) {
+    .board-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .board-card {
+        min-height: 96px;
+        padding: 16px;
+    }
+}
+
+/* Telephones : on reduit encore les hauteurs et le texte */
+@media (max-width: 480px) {
+    .board-header {
+        min-height: 0;
+        padding: 16px 14px;
+        font-size: 1rem;
+    }
+
+    .board-card {
+        min-height: 78px;
+        font-size: 1.05rem;
+    }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Indie+Flower&display=swap" rel="stylesheet">
+    <title>Premiers projets</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/pages/page2.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <header class="page-header">
+        <h1>Premiers projets</h1>
+    </header>
+    <!-- Contenu principal :
+         texte d'introduction puis mini-jeu sur les paroles -->
+    <main class="page-content">
+        <!-- Bouton qui ouvre le premier texte explicatif -->
+        <button class="discover" id="discoverBtn" aria-expanded="false" aria-controls="reveal1">
+            Décollage <span class="arrow">↓</span>
+        </button>
+        <!-- Bloc narratif :
+             rappelle la bonne reponse precedente
+             puis presente les premiers projets de Zamdane -->
+        <div class="reveal" id="reveal1">
+            <p>
+                Il s'agissait bien de <em>Favaro</em> !
+                <br>
+                Il enchaîne ensuite entre 2018 et 2021 avec plusieurs projets :
+                <em>Yung D/C</em>, <em>20's</em>, <em>Affamé</em>, <em>Z</em>, <em>Chrysalis</em> (+DLC), et <em>Affamé - Saison 2</em>.
+                On retrouve des morceaux marquants comme <em>Quand j'fume</em> et <em>Disaster</em> qui permettent déjà de constater l'identité assez sombre et à la fois déterminée de l'artiste.
+            </p>
+        </div>
+        <!-- Deuxieme partie :
+             introduction du mini-jeu
+             puis 3 questions a completer -->
+        <div class="next-block" id="reveal2">
+            <!-- Texte affiche progressivement -->
+            <p id="reveal2Text"></p>
+            <!-- Premiere question du jeu -->
+            <div class="board-wrapper">
+                <div class="board" id="board1">
+                    <!-- En-tete :
+                         extrait de phrase + indice audio -->
+                    <div class="board-header">
+                        Reviens vers moi et donne-moi du temps, j'ai déjà pleuré du sang...("Fleurs")
+
+                        <div class="hint-audio">
+                            <button class="audio-btn" id="hintAudioBtn1" type="button">
+                                indice
+                            </button>
+                            <!-- Audio d'aide pour reconnaitre le morceau -->
+                            <audio id="hintAudio1">
+                                <source src="../assets/audio/indice1.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                    <!-- 4 choix proposes au joueur -->
+                    <div class="board-grid">
+                        <button class="board-card" type="button">Mais les peines s’envolent au gré du vent</button>
+                        <button class="board-card" type="button">Mais les larmes s'envolent au gré du temps</button>
+                        <button class="board-card" type="button">Mais le mal s'efface avec le temps</button>
+                        <!-- Bonne reponse reperee pour le JavaScript -->
+                        <button class="board-card board1-good" type="button">Mais les larmes s'envolent au gré du vent</button>
+                    </div>
+                    <!-- Message d'erreur si mauvais choix -->
+                    <p class="board-error" id="boardError1"></p>
+                </div>
+            </div>
+            <!-- Deuxieme question :
+                 cachee au depart,
+                 debloquee apres reussite de la premiere -->
+            <div class="board-wrapper board-hidden" id="board2Wrap">
+                <div class="board" id="board2">
+                    <div class="board-header">
+                        Passe une heure dans mes patins, ça équivaut à...("triste mais elle aime ça")
+                        <div class="hint-audio">
+                            <button class="audio-btn" id="hintAudioBtn2" type="button">
+                                indice
+                            </button>
+                            <audio id="hintAudio2">
+                                <source src="../assets/audio/indice2.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="board-grid">
+                        <button class="board-card" type="button">3 vies dans leurs souliers</button>
+                        <!-- Bonne reponse -->
+                        <button class="board-card board2-good" type="button">3 piges dans leurs souliers</button>
+                        <button class="board-card" type="button">Une heure dans mes patins</button>
+                        <button class="board-card" type="button">3 ans dans leurs sabats</button>
+                    </div>
+                    <p class="board-error" id="boardError2"></p>
+                </div>
+            </div>
+            <!-- Troisieme question :
+                 derniere etape avant la page suivante -->
+            <div class="board-wrapper board-hidden" id="board3Wrap">
+                <div class="board" id="board3">
+                    <div class="board-header">
+                        Grandi dans la merde, on m'a toujours traité comme un insecte moi. Cette vie n'est qu'un test et..("Le monde par ma fenêtre")
+                        <div class="hint-audio">
+                            <button class="audio-btn" id="hintAudioBtn3" type="button">
+                                indice
+                            </button>
+                            <audio id="hintAudio3">
+                                <source src="../assets/audio/indice3.mp3" type="audio/mpeg">
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="board-grid">
+                        <button class="board-card" type="button">j'attends les réponses</button>
+                        <button class="board-card" type="button">j'ai toutes les réponses</button>
+                        <!-- Bonne reponse -->
+                        <button class="board-card board3-good" type="button">je n'ai aucune réponse</button>
+                        <button class="board-card" type="button">je cherche les réponses</button>
+                    </div>
+                    <p class="board-error" id="boardError3"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Code commun a toutes les pages, puis script propre a la page 2 :
+         animations, affichage progressif, gestion des reponses,
+         indices audio et passage a la page suivante -->
+    <script src="../js/common.js" defer></script>
+    <script src="../js/pages/page2.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+/* ============================================================
+   layout.css
+   Structure commune a toutes les pages de jeu (page1 a page5).
+   Anciennement "page1.css" : ce fichier n'a jamais ete propre
+   a la page 1, il contient le squelette partage de chaque etape.
+
+   Contient :
+   - reglages du corps des pages de jeu
+   - en-tete et zone de contenu
+   - bouton "Presentation / Decouvrir"
+   - blocs reveal / next-block
+   - zone audio + indices du blindtest (page 1)
+   - champ de reponse (page 1)
+   ============================================================ */
+
+/* --- Corps des pages de jeu ----------------------------------- */
+body {
+    min-height: 220vh;
+    display: block;
+    font-size: clamp(17px, 2.6vw, 26px);
+    background-attachment: fixed;
+}
+
+/* Le voile reste fixe en fond pendant le scroll */
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.page-header,
+.page-content {
+    position: relative;
+    z-index: 1;
+}
+
+.page-header {
+    margin-top: 13vh;
+    text-align: center;
+}
+
+.page-content {
+    margin-top: 30vh;
+    padding: 0 6vw;
+    text-align: center;
+}
+
+/* Textes narratifs : police manuscrite, sans capitales forcees */
+.reveal p,
+.next-block > p {
+    font-family: var(--font-hand);
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+/* --- Bouton d'ouverture ("Presentation", "Decollage"...) ------ */
+.discover {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    font: inherit;
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* Animation au survol : le texte bouge legerement */
+.discover:hover {
+    animation: microshake 0.18s ease-in-out infinite;
+}
+
+.discover:focus-visible {
+    outline: 3px solid var(--color-border);
+    outline-offset: 6px;
+}
+
+/* Fleche du bouton : transition fluide pour sa rotation */
+.arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Quand le bloc d'intro est ouvert, la fleche se retourne */
+.discover.open .arrow {
+    transform: rotate(180deg);
+}
+
+/* Micro-mouvement utilise sur le bouton au survol */
+@keyframes microshake {
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-0.6px); }
+    50%  { transform: translateX(0.6px); }
+    75%  { transform: translateX(-0.4px); }
+    100% { transform: translateX(0); }
+}
+
+/* --- Bloc de presentation (reveal) ---------------------------- */
+/* Cache au depart avec une legere descente */
+.reveal {
+    max-width: 900px;
+    margin: 25px auto 0;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Etat visible : apparition en fondu + remontee */
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* --- Deuxieme bloc (next-block) ------------------------------- */
+/* Meme logique : cache avec un leger decalage vertical */
+.next-block {
+    max-width: 900px;
+    margin: 20vh auto 0;
+    opacity: 0;
+    transform: translateY(18px);
+    pointer-events: none;
+    will-change: opacity, transform;
+}
+
+#reveal2 p {
+    white-space: pre-line;
+}
+
+/* --- Zone audio du blindtest (page 1) ------------------------- */
+.audio-wrap {
+    max-width: 650px;
+    margin: 18px auto 0;
+}
+
+.audio-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.audio-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    border: 2px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.audio-btn:hover {
+    background: var(--color-text);
+    color: #000;
+}
+
+.audio-btn:focus-visible {
+    outline: 3px solid var(--color-border);
+    outline-offset: 6px;
+}
+
+.side-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mini-btn {
+    width: 170px;
+    padding: 6px 8px;
+    border: 2px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-hand);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mini-btn:hover {
+    background: var(--color-text);
+    color: #000;
+}
+
+.mini-btn:focus-visible {
+    outline: 3px solid var(--color-border);
+    outline-offset: 6px;
+}
+
+/* --- Zone de reponse du blindtest (page 1) -------------------- */
+.answer-wrap {
+    max-width: 650px;
+    margin: 22px auto 0;
+    text-align: center;
+}
+
+.answer-core {
+    position: relative;
+    width: 100%;
+}
+
+.answer-wrap label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.answer-row {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.answer-row input {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid var(--color-border);
+    background: transparent;
+    outline: none;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.answer-row input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 1px;
+}
+
+.answer-row input:hover {
+    background: var(--color-text);
+    color: #000;
+}
+
+.answer-row input:focus-visible {
+    outline: 3px solid var(--color-border);
+    outline-offset: 6px;
+}
+
+.answer-btn {
+    padding: 0 18px;
+    border: 2px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.answer-btn:hover {
+    background: var(--color-text);
+    color: #000;
+}
+
+.answer-btn:focus-visible {
+    outline: 3px solid var(--color-border);
+    outline-offset: 6px;
+}
+
+.answer-error {
+    min-height: 1.3em;
+    margin-top: 12px;
+    letter-spacing: 1px;
+    opacity: 0.95;
+}
+
+/* --- Indices du blindtest (page 1) ---------------------------- */
+/* Indice texte : cache puis affiche avec un fondu et une remontee */
+.hint-text {
+    position: absolute;
+    top: 44px;
+    left: calc(100% + 18px);
+    width: 260px;
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-align: left;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hint-text.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Indice image : cache puis revele avec un fondu et un mouvement */
+.hint-img {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    width: min(420px, 92%);
+    border: 2px solid var(--color-border);
+    opacity: 0;
+    transform: translate(-50%, 10px);
+    pointer-events: none;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.hint-img.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+}
+
+/* --- Etats utilitaires d'apparition --------------------------- */
+.hidden {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+/* Tablettes et petits ecrans : on recentre les indices du
+   blindtest sous le champ de reponse au lieu de les placer
+   a droite (ou il n'y a plus la place). */
+@media (max-width: 900px) {
+    .page-header {
+        margin-top: 10vh;
+    }
+
+    .page-content {
+        margin-top: 22vh;
+    }
+
+    .hint-text {
+        top: calc(100% + 80px);
+        left: 50%;
+        width: min(520px, 92%);
+        text-align: center;
+        transform: translate(-50%, 6px);
+    }
+
+    .hint-text.show {
+        transform: translate(-50%, 0);
+    }
+
+    .hint-img {
+        top: calc(100% + 140px);
+    }
+}
+
+/* Telephones : on empile les controles audio, on reduit les
+   marges et on laisse les boutons prendre la largeur. */
+@media (max-width: 560px) {
+    body {
+        background-attachment: scroll; /* fixed est instable sur mobile */
+    }
+
+    .page-content {
+        padding: 0 5vw;
+    }
+
+    .audio-controls {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .audio-btn {
+        width: 100%;
+        max-width: 320px;
+        padding: 14px 20px;
+    }
+
+    .side-buttons {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .mini-btn {
+        width: auto;
+        flex: 1;
+        min-width: 130px;
+    }
+
+    .answer-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .answer-btn {
+        padding: 12px 18px;
+    }
+}
+
+/* ============================================================
+   Animation partagee : secousse d'erreur
+   Utilisee par les pages 2, 4 et 5 quand une mauvaise reponse
+   est choisie. Centralisee ici pour eviter la duplication.
+   ============================================================ */
+@keyframes shake {
+    0%   { transform: translateX(0); }
+    20%  { transform: translateX(-5px); }
+    40%  { transform: translateX(5px); }
+    60%  { transform: translateX(-4px); }
+    80%  { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+
+/* Reduction des animations si l'utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+    .discover:hover {
+        animation: none;
+    }
+
+    .arrow {
+        transition: none;
+    }
+
+    .reveal,
+    .next-block {
+        transition: none;
+    }
+}

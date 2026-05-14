@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Confirmation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/pages/page4.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <header class="page-header">
+        <h1>Confirmation</h1>
+    </header>
+
+    <!-- Contenu principal de la page :
+         texte de narration sur la suite du parcours de Zamdane
+         puis mini-jeu ou il faut retrouver les titres de l'artiste -->
+    <main class="page-content">
+
+        <!-- Bouton qui permet d'ouvrir la partie introduction de la page -->
+        <button class="discover" id="discoverBtn" aria-expanded="false" aria-controls="reveal1">
+            Nouvelle étape <span class="arrow">↓</span>
+        </button>
+
+        <!-- Bloc de texte d'introduction : suite de la narration -->
+        <div class="reveal" id="reveal1">
+            <p>
+                Bien joué, tu as retrouvé les bonnes pochettes.
+                <br><br>
+                Après le succès de <em>Couleur de ma peine</em>, en 2023 Zamdane reprend sa célèbre série <em>Affamé</em>, avec la saison 3.
+                <br>
+                Cette fois-ci, il publie les différents titres 1 par 1, accompagnés de clips, comme celui de <em>Conditionnés à décevoir (Affamé #15)</em> ou <em>Triste mais elle aime ça (Affamé #21)</em> qui deviendra son meilleur démarrage et un de ses titres les plus connus.
+                <br><br>
+                En 2024, il continue avec son quatrième album <em>Solsad</em>. À sa sortie, <em>Solsad</em>, se place à la troisième place tu Top Album avec 6776 ventes en première semaine. Zamdane possède désormais une vraie communauté qui attend chaque sortie.
+                <br>
+                L'album respecte l'engouement des fans, puisqu'on y trouve 20 titres, dont plusieurs collaborations variées, avec Niska, Tif, Pomme ou Sofiane Pamart par exemple.
+                <br>
+                Aussi, l'enchaînement entre les morceaux est pensée de façon à ce que l'album puisse s'écouter sans coupure, avec des transitions travaillées et majoritairement jouées avec de vrais instruments.
+                <br><br>
+                Pour ce jeu, vous devrez trouver les titres publiés par Zamdane, parmi une liste de 20. Les autres titres appartiennent à d'autres artistes.
+            </p>
+        </div>
+
+        <!-- Zone principale du mini-jeu :
+             affiche le compteur de bonnes reponses restantes,
+             la grille des titres a selectionner
+             puis le bouton pour passer a la suite une fois le jeu reussi -->
+        <div class="quiz-board" id="quizBoard">
+
+            <!-- Haut de la zone de jeu :
+                 affichage du compteur de titres encore a trouver -->
+            <div class="quiz-top">
+                <span class="quiz-counter" id="quizCounter">
+                    Titres restants : 7
+                </span>
+            </div>
+
+            <!-- Grille dans laquelle le JavaScript va generer
+                 les 20 titres cliquables du quiz -->
+            <div class="quiz-grid" id="quizGrid"></div>
+
+            <!-- Bouton pour passer a la page suivante :
+                 cache au depart,
+                 puis affiche quand tous les bons titres ont ete trouves -->
+            <div class="next-page-wrap" id="nextPageWrap">
+                <button class="validate-btn" id="nextPageBtn" type="button">
+                    Passer à la page suivante
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Code commun a toutes les pages, puis script propre a la page 4 :
+         gestion de l'ouverture du texte, de l'affichage progressif du quiz,
+         de la selection des titres et du passage a la page suivante -->
+    <script src="../js/common.js" defer></script>
+    <script src="../js/pages/page4.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+/* ============================================================
+   pages/page4.css
+   Mini-jeu quiz : retrouver les vrais titres de l'artiste
+   parmi une grille de 20 propositions.
+   ============================================================ */
+
+.reveal p {
+    font-family: var(--font-hand);
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.quiz-board {
+    width: 100%;
+    margin-top: 28px;
+}
+
+.quiz-top {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 12px;
+}
+
+/* Compteur cache au depart : il apparait en fondu + remontee */
+.quiz-counter {
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    letter-spacing: normal;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.quiz-counter.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quiz-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+/* Cartes du quiz : cachees, retournees de dos, pretes a s'animer */
+.quiz-card {
+    min-height: 110px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text);
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+
+    opacity: 0;
+    transform: perspective(900px) rotateY(180deg) scale(0.92);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    filter: brightness(0.7);
+
+    transition:
+        opacity 0.55s ease,
+        transform 2.5s cubic-bezier(.22, 1, .36, 1),
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+/* Quand une carte est affichee : elle passe de dos a face */
+.quiz-card.show {
+    opacity: 1;
+    transform: perspective(900px) rotateY(0deg) scale(1);
+    filter: brightness(1);
+}
+
+/* Au survol : remontee et agrandissement */
+.quiz-card:hover {
+    transform: translateY(-4px) scale(1.03);
+    border-color: var(--color-border);
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 0.8),
+        0 0 28px rgba(255, 255, 255, 0.6),
+        inset 0 0 10px rgba(255, 255, 255, 0.25);
+}
+
+.quiz-card:focus-visible {
+    outline: 3px solid var(--color-border);
+    outline-offset: 6px;
+}
+
+.quiz-card.correct {
+    border-color: var(--color-correct);
+    box-shadow:
+        0 0 15px rgba(76, 255, 76, 0.6),
+        inset 0 0 10px rgba(76, 255, 76, 0.2);
+}
+
+.quiz-card.wrong {
+    border-color: var(--color-wrong);
+    box-shadow:
+        0 0 15px rgba(255, 76, 76, 0.5),
+        inset 0 0 10px rgba(255, 76, 76, 0.16);
+}
+
+/* Secousse d'erreur (keyframes "shake" defini dans layout.css) */
+.quiz-card.shake {
+    animation: shake 0.35s;
+}
+
+/* Bouton final cache : apparait quand tous les bons titres trouves */
+.next-page-wrap {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(30px);
+    pointer-events: none;
+}
+
+.next-page-wrap.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.validate-btn {
+    width: 220px;
+    padding: 6px 12px;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-text);
+    background: transparent;
+    border: 2px solid var(--color-border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-display);
+}
+
+.validate-btn:hover {
+    background: var(--color-text);
+    color: #000;
+}
+
+.validate-btn:focus-visible {
+    outline: 3px solid var(--color-border);
+    outline-offset: 6px;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .quiz-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .quiz-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .quiz-card {
+        min-height: 92px;
+        padding: 14px;
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .quiz-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .validate-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}

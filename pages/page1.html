@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Débuts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <header class="page-header">
+        <h1>Les débuts</h1>
+    </header>
+
+    <!-- Contenu principal de la page 1 :
+         presentation de l'artiste, puis mise en place du blindtest -->
+    <main class="page-content">
+
+        <!-- Bouton qui permet d'ouvrir la partie presentation -->
+        <button class="discover" id="discoverBtn" aria-expanded="false" aria-controls="reveal1">
+            Présentation <span class="arrow">↓</span>
+        </button>
+
+        <!-- Bloc de presentation :
+             texte d'introduction sur Zamdane
+             + explication du principe general du site -->
+        <div class="reveal" id="reveal1">
+            <p>
+                Zamdane, de son vrai nom Ayoub Zaidane est un jeune artiste né à Marrakech au Maroc.
+                Il arrive à 17 ans en France, à Marseille où il commence la musique inspiré par les têtes d'affiche du rap de l'époque mais aussi par les grands noms de la chanson française tel que Dalida ou Charles Aznavour.
+                <br><br>Sur ce site, vous aurez la possibilité de découvrir (ou re-découvrir) son parcours musical à travers une série de mini-jeux portant sur son univers musical.
+                <br>À la fin de chaque mini-jeu, vous découvrirez une lettre composant le nom de son dernier album !
+            </p>
+        </div>
+
+        <!-- Deuxieme bloc de la page :
+             zone qui sert au blindtest avec le texte affiche progressivement,
+             l'extrait audio, les indices et le champ de reponse -->
+        <div class="next-block" id="reveal2">
+            <p id="reveal2Text"></p>
+            <br>
+
+            <!-- Zone audio du blindtest :
+                 contient l'extrait a ecouter,
+                 le bouton de lecture
+                 et les boutons d'indice / solution -->
+            <div class="audio-wrap hidden" id="audioWrap">
+                <audio id="audioExtrait" preload="none">
+                    <source src="../assets/audio/audio-mystere.mp3" type="audio/mpeg">
+                </audio>
+                <div class="audio-controls">
+                    <button class="audio-btn" id="audioBtn" type="button" aria-pressed="false">
+                        Écouter l'extrait
+                    </button>
+                    <div class="side-buttons">
+                        <button class="mini-btn" id="hintImgBtn" type="button" aria-expanded="false" aria-controls="hintImg">
+                            Indice
+                        </button>
+                        <button class="mini-btn" id="hintTextBtn" type="button" aria-expanded="false" aria-controls="hintText">
+                            Solution
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Zone de reponse du blindtest :
+                 champ de saisie, bouton de validation,
+                 message d'erreur
+                 et elements d'aide caches au depart -->
+            <div class="answer-wrap hidden" id="answerWrap">
+                <div class="answer-core">
+                    <form class="answer-row" id="answerForm" novalidate>
+                        <label for="answerInput" class="sr-only"></label>
+                        <input id="answerInput" name="answer" type="text" placeholder="Ta réponse" autocomplete="off">
+                        <button class="answer-btn" id="answerBtn" type="submit">OK</button>
+                    </form>
+                    <p class="answer-error" id="answerError" role="alert" aria-live="polite"></p>
+                    <div class="hint-text" id="hintText">Solution : favaro</div>
+                    <img class="hint-img" id="hintImg" src="../assets/images/indice.png" alt="Indice visuel">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Code commun a toutes les pages, puis script propre a la page 1 :
+         gestion de l'apparition des blocs, du blindtest,
+         des indices et de la validation de la reponse -->
+    <script src="../js/common.js" defer></script>
+    <script src="../js/pages/page1.js" defer></script>
+</body>
+</html>
